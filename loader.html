@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Loading...</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+
+    overflow:hidden;
+
+    font-family:'Quicksand',sans-serif;
+
+    background:
+    linear-gradient(
+    135deg,
+    #071120,
+    #111827,
+    #1b1030
+    );
+
+    position:relative;
+
+    transition:opacity 1s ease;
+}
+
+/* BACKGROUND GLOW */
+
+body::before{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+
+    radial-gradient(circle at 20% 30%,
+    rgba(173,216,255,0.10),
+    transparent 20%),
+
+    radial-gradient(circle at 80% 70%,
+    rgba(255,182,193,0.08),
+    transparent 20%);
+
+    animation:moveGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes moveGlow{
+
+    from{
+        transform:translateY(0px);
+    }
+
+    to{
+        transform:translateY(-20px);
+    }
+}
+
+/* LOADER */
+
+.loader{
+
+    display:flex;
+
+    gap:18px;
+
+    z-index:2;
+
+    transition:opacity 1s ease;
+}
+
+/* WATERMELON */
+
+.watermelon{
+
+    font-size:52px;
+
+    transition:
+    transform 0.35s ease,
+    opacity 0.35s ease,
+    filter 0.35s ease;
+}
+
+/* DISAPPEAR EFFECT */
+
+.eaten{
+
+    opacity:0;
+
+    transform:
+    scale(0.2)
+    translateY(12px);
+
+    filter:blur(4px);
+}
+
+/* TEXT */
+
+.loading-text{
+
+    margin-top:40px;
+
+    color:white;
+
+    font-size:1rem;
+
+    opacity:0.8;
+
+    letter-spacing:1px;
+
+    transition:opacity 0.4s ease;
+
+    z-index:2;
+}
+
+/* MUSIC SYSTEM */
+
+.music-wrapper{
+
+position:fixed;
+
+bottom:24px;
+right:24px;
+
+z-index:9999;
+}
+
+.music-toggle{
+
+width:62px;
+height:62px;
+
+border-radius:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:1.4rem;
+
+cursor:pointer;
+
+background:
+rgba(255,255,255,0.08);
+
+backdrop-filter:blur(14px);
+
+border:
+1px solid rgba(255,255,255,0.10);
+
+box-shadow:
+0 0 30px rgba(173,216,255,0.16);
+
+transition:0.35s ease;
+
+animation:
+musicPulse 3s infinite ease-in-out;
+}
+
+.music-toggle:hover{
+
+transform:
+scale(1.08);
+
+background:
+rgba(255,255,255,0.14);
+}
+
+.volume-panel{
+
+position:absolute;
+
+bottom:78px;
+right:0;
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+opacity:0;
+
+pointer-events:none;
+
+transform:
+translateY(10px);
+
+transition:0.3s ease;
+}
+
+.volume-panel.show{
+
+opacity:1;
+
+pointer-events:auto;
+
+transform:
+translateY(0px);
+}
+
+.volume-panel button{
+
+width:48px;
+height:48px;
+
+border:none;
+
+border-radius:50%;
+
+background:
+rgba(255,255,255,0.10);
+
+color:white;
+
+font-size:1.1rem;
+
+cursor:pointer;
+
+backdrop-filter:blur(12px);
+
+transition:0.3s ease;
+}
+
+.volume-panel button:hover{
+
+transform:scale(1.08);
+
+background:
+rgba(255,255,255,0.18);
+}
+
+@keyframes musicPulse{
+
+0%,100%{
+box-shadow:
+0 0 20px rgba(173,216,255,0.12);
+}
+
+50%{
+box-shadow:
+0 0 40px rgba(173,216,255,0.28);
+}
+}
+
+</style>
+
+</head>
+
+<body id="body">
+
+<div class="loader" id="loader">
+
+    <span class="watermelon">🍉</span>
+    <span class="watermelon">🍉</span>
+    <span class="watermelon">🍉</span>
+    <span class="watermelon">🍉</span>
+    <span class="watermelon">🍉</span>
+    <span class="watermelon">🍉</span>
+    <span class="watermelon">🍉</span>
+
+</div>
+
+<div class="loading-text" id="loadingText">
+
+    loading your comfort place...
+
+</div>
+
+<script>
+
+const melons =
+document.querySelectorAll(".watermelon");
+
+const loadingText =
+document.getElementById("loadingText");
+
+const loader =
+document.getElementById("loader");
+
+const body =
+document.getElementById("body");
+
+/* TEXTS */
+
+const texts = [
+
+    "loading your comfort place...",
+
+    "preparing soft memories 🍉",
+
+    "warming up hugs...",
+
+    "collecting late-night songs 🌙",
+
+    "preparing chaos section 😭",
+
+    "loading comfort and memories...",
+
+    "summoning sleepy vibes ✨"
+];
+
+let textIndex = 0;
+
+/* TEXT ROTATION */
+
+setInterval(() => {
+
+    textIndex++;
+
+    if(textIndex >= texts.length){
+        textIndex = 0;
+    }
+
+    loadingText.style.opacity = 0;
+
+    setTimeout(() => {
+
+        loadingText.innerText =
+        texts[textIndex];
+
+        loadingText.style.opacity = 0.8;
+
+    },300);
+
+},2500);
+
+/* WAIT FUNCTION */
+
+function wait(ms){
+
+    return new Promise(resolve =>
+    setTimeout(resolve, ms));
+}
+
+/* MAIN LOOP */
+
+async function startAnimation(){
+
+    while(true){
+
+        /* RESET */
+
+        melons.forEach(melon => {
+
+            melon.classList.remove("eaten");
+        });
+
+        await wait(900);
+
+        /* RIGHT TO LEFT */
+
+        for(let i = melons.length - 1; i >= 0; i--){
+
+            melons[i].classList.add("eaten");
+
+            await wait(240);
+        }
+
+        /* END PAUSE */
+
+        await wait(1200);
+    }
+}
+
+/* START */
+
+startAnimation();
+
+/* FADE OUT */
+
+setTimeout(() => {
+
+    loader.style.opacity = "0";
+
+    loadingText.style.opacity = "0";
+
+    body.style.opacity = "0";
+
+},10500);
+
+/* REDIRECT */
+
+setTimeout(() => {
+
+    window.location.href = "home.html";
+
+},12000);
+
+</script>
+
+</body>
+</html>

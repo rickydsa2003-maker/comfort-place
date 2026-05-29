@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Take A Breath</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    min-height:100vh;
+
+    font-family:'Quicksand',sans-serif;
+
+    background:
+    linear-gradient(
+    135deg,
+    #060b16,
+    #0d1324,
+    #17122c,
+    #0b1020,
+    #050814
+    );
+
+    overflow-x:hidden;
+
+    color:white;
+
+    position:relative;
+}
+
+/* BACKGROUND */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+    radial-gradient(circle at 20% 30%,
+    rgba(173,216,255,0.08),
+    transparent 22%),
+
+    radial-gradient(circle at 80% 70%,
+    rgba(255,182,193,0.06),
+    transparent 24%),
+
+    radial-gradient(circle at 50% 50%,
+    rgba(255,255,255,0.03),
+    transparent 30%);
+
+    z-index:-1;
+}
+
+body::after{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+background-image:
+url("https://www.transparenttextures.com/patterns/noise.png");
+
+opacity:0.035;
+
+pointer-events:none;
+
+z-index:-1;
+}
+
+/* MAIN */
+
+.container{
+
+    max-width:1100px;
+
+    margin:auto;
+
+    padding:40px 20px 70px;
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+
+    position:fixed;
+
+    top:20px;
+    left:20px;
+
+    padding:12px 22px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    color:white;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(10px);
+
+    transition:0.3s ease;
+
+    z-index:50;
+
+    font-size:0.95rem;
+}
+
+.back-btn:hover{
+
+    background:
+    rgba(255,255,255,0.14);
+}
+
+/* TOP */
+
+.top{
+
+    text-align:center;
+
+    margin-top:40px;
+
+    margin-bottom:55px;
+
+    animation:
+    fadeIn 0.8s ease;
+}
+
+.title{
+
+    font-size:
+    clamp(2.5rem,5vw,4rem);
+
+    margin-bottom:16px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+}
+
+.subtitle{
+
+    color:
+    rgba(255,255,255,0.68);
+
+    max-width:650px;
+
+    margin:auto;
+
+    line-height:1.8;
+
+    font-size:1rem;
+}
+
+/* GRID */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(240px,1fr));
+
+    gap:22px;
+}
+
+/* BUTTON */
+
+.emotion-btn{
+
+    padding:28px 24px;
+
+    border-radius:30px;
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    background:
+    rgba(255,255,255,0.05);
+
+    backdrop-filter:blur(10px);
+
+    cursor:pointer;
+
+    transition:
+    0.35s ease;
+
+    min-height:170px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    gap:12px;
+}
+
+.emotion-btn:hover{
+
+    transform:
+    translateY(-6px);
+
+    background:
+    rgba(255,255,255,0.08);
+
+    border:
+    1px solid rgba(255,255,255,0.14);
+}
+
+/* SHINE */
+
+.emotion-btn::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:70%;
+    height:100%;
+
+    background:
+    linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.12),
+    transparent
+    );
+
+    transform:
+    skewX(-20deg);
+
+    transition:0.8s;
+}
+
+.emotion-btn:hover::after{
+
+    left:150%;
+}
+
+/* GLOW COLORS */
+
+.emotion-btn:nth-child(1):hover{
+
+    box-shadow:
+    0 0 35px rgba(173,216,255,0.18);
+}
+
+.emotion-btn:nth-child(2):hover{
+
+    box-shadow:
+    0 0 35px rgba(186,85,211,0.18);
+}
+
+.emotion-btn:nth-child(3):hover{
+
+    box-shadow:
+    0 0 35px rgba(100,149,237,0.18);
+}
+
+.emotion-btn:nth-child(4):hover{
+
+    box-shadow:
+    0 0 35px rgba(255,105,180,0.16);
+}
+
+.emotion-btn:nth-child(5):hover{
+
+    box-shadow:
+    0 0 35px rgba(0,255,255,0.14);
+}
+
+/* ICON */
+
+.icon{
+
+    font-size:2.2rem;
+
+    margin-bottom:6px;
+
+    filter:
+    drop-shadow(
+    0 0 10px rgba(255,255,255,0.10)
+    );
+}
+
+/* TITLE */
+
+.btn-title{
+
+    font-size:1.15rem;
+
+    font-weight:700;
+}
+
+/* TEXT */
+
+.btn-text{
+
+    color:
+    rgba(255,255,255,0.66);
+
+    line-height:1.7;
+
+    font-size:0.92rem;
+}
+
+/* MESSAGE BOX */
+
+.message-box{
+
+position:relative;
+
+overflow:hidden;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+margin-top:45px;
+
+width:100%;
+
+min-height:340px;
+
+padding:55px 50px;
+
+border-radius:36px;
+
+background-size:cover;
+
+background-position:center;
+
+background-repeat:no-repeat;
+
+background-blend-mode:screen;
+
+filter:
+brightness(0.82)
+saturate(115%);
+
+border:
+1px solid rgba(255,255,255,0.10);
+
+backdrop-filter:
+blur(14px)
+saturate(140%);
+
+box-shadow:
+0 15px 45px rgba(0,0,0,0.22);
+
+transition:
+all 0.5s ease;
+}
+
+/* DARK OVERLAY */
+
+.message-box::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+
+linear-gradient(
+to bottom,
+rgba(0,0,0,0.18),
+rgba(0,0,0,0.34)
+);
+
+z-index:1;
+}
+
+/* DREAMY GLOW */
+
+.message-box::after{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+
+radial-gradient(
+circle at 20% 30%,
+rgba(255,255,255,0.12),
+transparent 24%
+),
+
+radial-gradient(
+circle at 80% 70%,
+rgba(255,220,240,0.10),
+transparent 26%
+),
+
+radial-gradient(
+circle at 50% 50%,
+rgba(180,220,255,0.08),
+transparent 30%
+);
+
+mix-blend-mode:screen;
+
+pointer-events:none;
+
+animation:
+floatGlow 8s ease-in-out infinite;
+
+z-index:2;
+}
+
+/* MESSAGE TEXT */
+
+.message-inner{
+
+position:relative;
+
+z-index:3;
+
+max-width:82%;
+
+font-size:1.28rem;
+
+line-height:2;
+
+font-weight:600;
+
+letter-spacing:0.4px;
+
+color:white;
+
+animation:
+messageFade 0.8s ease;
+
+text-shadow:
+0 2px 10px rgba(0,0,0,0.28);
+}
+
+/* FOOTER */
+
+.footer{
+
+    margin-top:55px;
+
+    text-align:center;
+
+    color:
+    rgba(255,255,255,0.34);
+
+    font-size:0.88rem;
+
+    letter-spacing:1px;
+}
+
+/* FADE */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(20px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0px);
+    }
+}
+
+@keyframes floatGlow{
+
+0%{
+
+transform:
+translateY(0px)
+scale(1);
+}
+
+50%{
+
+transform:
+translateY(-10px)
+scale(1.03);
+}
+
+100%{
+
+transform:
+translateY(0px)
+scale(1);
+}
+}
+
+.message-inner{
+
+animation:
+messageFade 0.8s ease;
+
+max-width:85%;
+}
+
+@keyframes messageFade{
+
+from{
+
+opacity:0;
+
+transform:
+translateY(15px);
+}
+
+to{
+
+opacity:1;
+
+transform:
+translateY(0px);
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- BACK -->
+
+<button class="back-btn"
+onclick="window.location.href='home.html'">
+
+← Home
+
+</button>
+
+<div class="container">
+
+    <!-- TOP -->
+
+    <div class="top">
+
+        <h1 class="title">
+            Take A Breath 🌙
+        </h1>
+
+        <p class="subtitle">
+            small grounding reminders for overwhelming moments
+        </p>
+
+    </div>
+
+    <!-- BUTTON GRID -->
+
+    <div class="grid">
+
+        <!-- SAD -->
+
+        <div class="emotion-btn"
+        onclick="showMessage('sad')">
+
+            <div class="icon">☁️</div>
+
+            <div class="btn-title">
+                Open when sad
+            </div>
+
+            <div class="btn-text">
+                small reminders for difficult moments
+            </div>
+
+        </div>
+
+        <!-- ANXIOUS -->
+
+        <div class="emotion-btn"
+        onclick="showMessage('anxious')">
+
+            <div class="icon">🌧️</div>
+
+            <div class="btn-title">
+                Open when anxious
+            </div>
+
+            <div class="btn-text">
+                slower thoughts for restless minds
+            </div>
+
+        </div>
+
+        <!-- LONELY -->
+
+        <div class="emotion-btn"
+        onclick="showMessage('lonely')">
+
+            <div class="icon">🌙</div>
+
+            <div class="btn-title">
+                Open when lonely
+            </div>
+
+            <div class="btn-text">
+                quiet reminders that you matter
+            </div>
+
+        </div>
+
+        <!-- OVERTHINKING -->
+
+        <div class="emotion-btn"
+        onclick="showMessage('overthinking')">
+
+            <div class="icon">🫠</div>
+
+            <div class="btn-title">
+                Open when overthinking
+            </div>
+
+            <div class="btn-text">
+                grounding thoughts for loud nights
+            </div>
+
+        </div>
+
+        <!-- TIRED -->
+
+        <div class="emotion-btn"
+        onclick="showMessage('tired')">
+
+            <div class="icon">😴</div>
+
+            <div class="btn-title">
+                Open when tired
+            </div>
+
+            <div class="btn-text">
+                gentle permission to rest
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- MESSAGE BOX -->
+
+    <div class="message-box"
+    id="messageBox">
+
+        hey 🌙<br><br>
+
+        pause for a second.<br>
+        breathe slowly.<br>
+        you are safe here.
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        one breath at a time 🌙
+
+    </div>
+
+</div>
+
+<script>
+
+/* MESSAGES */
+
+const messages = {
+
+sad:[
+
+"bad days do not erase your softness 🌙",
+"you deserve kindness even on difficult nights",
+"please be patient with your healing",
+"you are not failing for feeling overwhelmed",
+"resting is not weakness",
+"your sadness deserves gentleness too",
+"it is okay if today felt heavy",
+"your heart is carrying more than people see",
+"you are still worthy on hard days",
+"please stop apologizing for being emotional",
+"you deserve warmth too",
+"small progress still matters",
+"even hurting hearts deserve care",
+"you are not too broken to heal",
+"tomorrow does not have to look like today",
+"your feelings are not inconveniences",
+"there is softness waiting for you again",
+"you are allowed to pause",
+"your emotions are deeply human",
+"you deserve peace without guilt",
+"you survived another difficult day",
+"healing is rarely graceful",
+"you do not need to carry everything alone",
+"gentle days will return eventually",
+"you deserve comfort without explanation",
+"please take tonight slowly",
+"there is no shame in struggling",
+"you matter even when exhausted",
+"your softness is not a flaw",
+"you deserve emotionally safe spaces",
+"some nights are only meant for surviving quietly",
+"you are still growing through this pain",
+"you deserve patience from yourself too",
+"even now, your existence matters",
+"you are not emotionally difficult",
+"you deserve to feel lighter someday",
+"your sadness will not last forever",
+"you deserve care beyond productivity",
+"it is okay to need rest",
+"your heart deserves tenderness",
+
+"your tears are not embarrassing",
+"you deserve mornings that feel softer",
+"pain does not make you unlovable",
+"you are carrying invisible battles",
+"your exhaustion deserves understanding",
+"it is okay if healing takes time",
+"you do not need to pretend to be okay",
+"soft hearts often feel the deepest pain",
+"your sadness deserves space too",
+"you are not weak for needing comfort",
+"surviving is enough sometimes",
+"please let yourself breathe slowly tonight",
+"your emotions are valid even when messy",
+"you deserve gentleness from yourself",
+"being emotional is not a burden",
+"there are still beautiful moments ahead",
+"you are not broken forever",
+"please stop blaming yourself for everything",
+"you deserve safe love",
+"your heart deserves rest",
+"one painful season does not define your future",
+"you are not alone in your sadness",
+"there is still hope quietly waiting for you",
+"please stop carrying everything by yourself",
+"your soul deserves calmness",
+"you deserve people who understand your softness",
+"you are not too sensitive",
+"it is okay to slow down",
+"your feelings matter deeply",
+"healing is happening quietly even now",
+"you deserve comfort on bad days too",
+"nothing is wrong with needing reassurance",
+"your sadness does not cancel your beauty",
+"you deserve emotionally gentle spaces",
+"you are trying harder than people realize",
+"please do not lose your softness",
+"you deserve peace that feels real",
+"it is okay to cry tonight 🌙",
+"you are still becoming someone strong",
+"your heart deserves patience",
+
+"some pain cannot be explained easily",
+"you deserve warmth during difficult seasons",
+"you are not behind in life",
+"healing is not a straight line",
+"please be gentle with your tired heart",
+"you deserve rest without guilt",
+"sadness does not make you less lovable",
+"you are still worthy of care",
+"your softness is beautiful",
+"you deserve kindness beyond achievements",
+"it is okay if you feel emotionally drained",
+"you are not disappointing for struggling",
+"your emotions deserve understanding",
+"please stop punishing yourself internally",
+"there are still peaceful moments ahead",
+"you deserve calmness too",
+"your heart deserves slower days",
+"you are not ruined by sadness",
+"being human is exhausting sometimes",
+"you deserve emotional safety",
+"please allow yourself to feel",
+"your sadness deserves compassion",
+"you are still deeply valuable",
+"soft people often carry silent pain",
+"you deserve a future that feels lighter",
+"your healing matters",
+"there is no shame in emotional exhaustion",
+"you deserve to be understood gently",
+"your feelings are not too much",
+"please stop minimizing your pain",
+"you are allowed to rest emotionally",
+"your heart is still trying",
+"there is beauty in surviving softly",
+"you deserve people who stay kindly",
+"your sadness is temporary",
+"you are not hard to love",
+"your inner world deserves care",
+"please breathe slowly tonight",
+"you deserve emotionally peaceful mornings",
+"there is still softness ahead",
+
+"some days are simply heavy",
+"you deserve grace during difficult moments",
+"your heart deserves tenderness every day",
+"please stop being cruel to yourself",
+"you are more resilient than you know",
+"resting does not erase your progress",
+"you deserve emotionally safe love",
+"your sadness deserves patience",
+"it is okay to ask for comfort",
+"you are not weak for needing people",
+"your emotions deserve space",
+"please stop apologizing for existing",
+"you deserve quiet healing",
+"your heart deserves reassurance",
+"there are still brighter nights ahead",
+"you are still growing even through pain",
+"being tired emotionally is understandable",
+"you deserve to feel emotionally held",
+"your softness matters",
+"please do not abandon yourself",
+"your feelings deserve kindness",
+"you are worthy beyond your difficult days",
+"there is still gentleness in the world",
+"you deserve slow healing",
+"your pain is real and valid",
+"please stop carrying silent guilt",
+"you deserve people who stay softly",
+"your heart deserves peace too",
+"you are not too emotional",
+"there is still comfort waiting for you",
+"you deserve rest without explanation",
+"your sadness deserves warmth",
+"please be patient with yourself tonight",
+"your healing is happening quietly",
+"you are not failing at life",
+"your emotions are deeply human",
+"you deserve emotionally calm nights",
+"softness still belongs to you",
+"you are still enough",
+"your future is not hopeless",
+
+"please stop doubting your worth",
+"your heart deserves compassion",
+"you are allowed to feel lost sometimes",
+"healing takes gentleness and time",
+"your sadness deserves care, not shame",
+"you deserve emotionally safe spaces",
+"there is still hope quietly blooming",
+"you are not broken beyond repair",
+"your softness deserves protection",
+"please take care of yourself tonight",
+"you deserve slower mornings",
+"your emotions deserve patience",
+"you are more lovable than your sadness says",
+"there are people capable of understanding you",
+"your heart deserves peace eventually",
+"you deserve emotionally kind love",
+"rest is healing too",
+"please stop fighting yourself constantly",
+"your feelings matter deeply",
+"you deserve reassurance without begging",
+"your pain deserves softness",
+"there is still light ahead 🌙",
+"you deserve comfort beyond survival",
+"your sadness is not your identity",
+"please allow yourself to heal slowly",
+"you are still deeply worthy",
+"your emotions are not burdens",
+"you deserve emotionally warm people",
+"there is still beauty ahead of you",
+"you deserve kindness during painful seasons",
+"your healing deserves time",
+"you are not difficult for feeling deeply",
+"please be softer with yourself",
+"your heart deserves calmness",
+"there is still life waiting beyond this sadness",
+"you deserve peaceful nights someday",
+"your softness survived another day",
+"you are not emotionally ruined",
+"please rest your tired heart",
+"you deserve to feel safe again"
+
+],
+
+anxious:[
+
+"breathe slowly, you are safe here 🌧️",
+"nothing needs immediate fixing right now",
+"your thoughts are louder than reality",
+"you deserve calm moments too",
+"fear is not prophecy",
+"your nervous system needs gentleness",
+"you are allowed to rest your mind",
+"not every possibility will happen",
+"please unclench your shoulders",
+"you are safer than your thoughts say",
+"rest first, solve later",
+"you do not need all the answers tonight",
+"slow breathing matters more than fast thinking",
+"you deserve peace beyond worry",
+"not everything is falling apart",
+"you are not losing control",
+"one difficult moment does not define your life",
+"your mind deserves softer nights",
+"you can survive uncertainty",
+"please return to the present moment",
+"your heart deserves stillness",
+"your fear is understandable but temporary",
+"you are not doomed because you feel anxious",
+"most worries shrink with time",
+"you deserve emotionally quiet moments",
+"you are not behind in life",
+"please stop preparing for pain every second",
+"your thoughts are not always facts",
+"nothing terrible needs to happen tonight",
+"you deserve rest beyond overthinking",
+"you are okay right now",
+"slow down your breathing gently",
+"peace can exist inside uncertainty",
+"your future is not ruined",
+"you do not need to control everything",
+"your mind deserves sleep too",
+"you are stronger than fear believes",
+"you deserve calmness beyond survival mode",
+"one breath at a time 🌙",
+"your heart deserves softness",
+
+"your thoughts cannot predict the future",
+"you are safe in this moment",
+"not every fear becomes reality",
+"your anxiety is not your identity",
+"please stop carrying tomorrow tonight",
+"you deserve peaceful breathing",
+"your body deserves rest too",
+"you are not failing because you feel anxious",
+"fear makes everything feel louder than it is",
+"you deserve emotionally slower nights",
+"it is okay to pause for a moment",
+"your nervous system needs kindness",
+"you are not weak for needing reassurance",
+"please breathe deeply again",
+"your thoughts are exhausting your heart",
+"nothing needs solving immediately",
+"you deserve stillness beyond panic",
+"your fears deserve gentleness, not shame",
+"you are not alone in feeling overwhelmed",
+"most situations are softer than your anxiety says",
+"you deserve emotionally safe moments",
+"your mind deserves comfort too",
+"you are not trapped forever in this feeling",
+"slow down your thoughts gently",
+"there is safety in this moment",
+"your future still holds softness",
+"you deserve to feel grounded again",
+"your anxiety does not define your worth",
+"you are allowed to rest mentally",
+"not everything is urgent",
+"your breathing matters more than your spiraling thoughts",
+"please stop expecting disaster constantly",
+"you deserve peace beyond fear",
+"your heart is trying its best",
+"everything does not need immediate clarity",
+"you deserve emotional quietness",
+"your mind deserves patience",
+"there is no shame in needing calm",
+"you are okay even while uncertain",
+"slow moments are healing too",
+
+"your thoughts are not emergencies",
+"please let yourself breathe fully",
+"your body deserves gentleness tonight",
+"you are not losing yourself",
+"nothing terrible is happening right now",
+"you deserve softer thoughts",
+"your nervous system is exhausted, not broken",
+"you are still safe even while anxious",
+"fear often exaggerates reality",
+"you deserve emotional reassurance",
+"your anxiety deserves compassion",
+"you are not dramatic for feeling overwhelmed",
+"there is still peace available to you",
+"you deserve calm beyond productivity",
+"your brain deserves slower nights",
+"not every uncomfortable feeling means danger",
+"you are not ruining your future",
+"please stop carrying invisible panic alone",
+"you deserve emotional stability",
+"rest your thoughts for a while 🌙",
+"you are more resilient than your anxiety admits",
+"your body deserves relaxation",
+"you do not need perfect control to be okay",
+"you deserve mornings that feel lighter",
+"your thoughts deserve boundaries too",
+"please stop preparing for worst-case scenarios",
+"your fear cannot predict everything",
+"you deserve emotionally restful moments",
+"you are allowed to take things slowly",
+"peace is possible even now",
+"your anxiety is temporary",
+"you deserve grounding and comfort",
+"your mind deserves softness",
+"there is no shame in feeling scared",
+"you are still deeply human",
+"your breathing deserves attention",
+"you deserve emotionally safe people",
+"your heart deserves reassurance",
+"you are not failing at life",
+"you deserve calmer nights",
+
+"please stop fighting yourself internally",
+"your mind deserves gentleness",
+"you are safer than your panic says",
+"you deserve emotionally slower living",
+"rest your nervous system tonight",
+"your fear deserves patience",
+"you are allowed to pause and breathe",
+"not every uncertainty means danger",
+"your body deserves emotional safety",
+"please stop overpreparing for pain",
+"your future still has peaceful moments waiting",
+"you deserve softness instead of constant pressure",
+"your thoughts are not always reality",
+"you are not weak for feeling anxious",
+"there is no shame in needing calmness",
+"you deserve emotional grounding",
+"your heart deserves peaceful rhythms",
+"you are still okay even while overwhelmed",
+"your anxiety is not your whole personality",
+"you deserve slower breaths and softer nights",
+"nothing needs to be perfect tonight",
+"your body deserves care beyond stress",
+"you are not broken for feeling this way",
+"please come back to the present moment",
+"you deserve emotional stillness",
+"your nervous system needs rest",
+"there are gentler days ahead",
+"you deserve comfort beyond fear",
+"your thoughts deserve kindness",
+"you are not trapped inside this feeling forever",
+"please breathe slowly again",
+"your mind deserves emotional quiet",
+"you deserve to feel safe inside yourself",
+"your anxiety deserves compassion, not judgment",
+"you are allowed to stop spiraling",
+"peace is not impossible for you",
+"you deserve emotionally calm mornings",
+"your fear does not control your destiny",
+"you are stronger than your panic",
+"your heart deserves patience",
+
+"please stop carrying invisible tension",
+"your breathing deserves softness",
+"you are not a burden for feeling anxious",
+"your body deserves gentleness",
+"you deserve emotional reassurance without shame",
+"your future is not doomed",
+"there is safety available to you right now",
+"your thoughts deserve rest",
+"you are still deeply worthy even while anxious",
+"nothing terrible needs to happen tonight",
+"you deserve emotionally gentle spaces",
+"your nervous system deserves kindness",
+"your anxiety is not permanent",
+"please allow yourself slower thoughts",
+"you deserve emotional warmth",
+"you are not ruining everything",
+"your mind deserves emotional rest",
+"there are still safe moments ahead",
+"you deserve to feel grounded again",
+"please stop predicting pain constantly",
+"your thoughts are not all facts",
+"you are okay right now 🌙",
+"your body deserves calmness too",
+"you deserve emotionally peaceful nights",
+"there is softness beyond fear",
+"your anxiety does not erase your worth",
+"you deserve slower living",
+"you are not emotionally weak",
+"your mind deserves stillness",
+"peace is possible for you too",
+"you deserve emotional breathing room",
+"your heart deserves calm rhythms",
+"you are allowed to rest mentally",
+"your future still holds beautiful moments",
+"please stop carrying tomorrow in your chest",
+"you deserve emotionally quiet spaces",
+"your thoughts deserve gentleness",
+"you are still safe here",
+"your nervous system deserves peace",
+"you deserve softness beyond survival mode"
+
+],
+
+lonely:[
+
+"you are not invisible 🌙",
+"someone somewhere would miss your presence deeply",
+"your existence matters more than you realize",
+"you deserve companionship that feels safe",
+"loneliness is not your permanent future",
+"quiet people still deserve deep love",
+"you are easier to care about than you think",
+"someone would feel lucky to know your heart",
+"your softness belongs in this world",
+"you deserve emotionally safe love",
+"being alone temporarily does not mean unwanted",
+"there are still people you have not met yet",
+"your story still has future chapters",
+"you deserve warmth too",
+"someone understands this feeling too",
+"your loneliness does not define you",
+"you are not emotionally disposable",
+"there is still connection ahead of you",
+"please do not isolate your heart forever",
+"you matter even in silence",
+"your presence changes rooms more than you notice",
+"you deserve people who stay gently",
+"there are calmer days ahead",
+"your heart deserves tenderness",
+"you are not forgotten",
+"you deserve affection without conditions",
+"your existence brings softness into the world",
+"there are still safe people out there",
+"you are not hard to love",
+"someone somewhere is rooting for you quietly",
+"you deserve emotional warmth",
+"even lonely nights eventually pass",
+"your heart deserves patience too",
+"you are not meant to carry loneliness forever",
+"there are future memories waiting for you",
+"you deserve people who understand your softness",
+"you matter more than your loneliness admits",
+"please stay open to connection",
+"your existence is deeply human and meaningful",
+"you deserve to feel chosen someday",
+
+"someone would notice if you disappeared",
+"you deserve conversations that feel safe",
+"your heart deserves closeness too",
+"you are not abandoned forever",
+"there are still gentle people in this world",
+"being lonely does not mean being unwanted",
+"your existence matters quietly every day",
+"you deserve to feel emotionally held",
+"someone could understand your heart deeply",
+"you are worthy of lasting connection",
+"your softness deserves companionship",
+"please do not give up on people completely",
+"you deserve love that feels calm",
+"there are still emotionally safe places ahead",
+"you are not meant to stay lonely forever",
+"your heart deserves to be listened to",
+"you are still lovable on quiet nights",
+"someone would appreciate your gentleness",
+"your loneliness deserves compassion",
+"you matter even when nobody says it out loud",
+"you deserve emotionally kind people",
+"your future still has meaningful connections waiting",
+"you are not forgotten by the universe",
+"please stop believing you are too much",
+"you deserve slow, safe affection",
+"someone could love your quietness too",
+"you are not emotionally invisible",
+"your existence deserves warmth",
+"there are still people capable of understanding you",
+"you deserve emotionally peaceful companionship",
+"your heart deserves soft moments",
+"someone somewhere would feel comforted by your presence",
+"you are easier to love than you think",
+"there is still emotional safety ahead",
+"you deserve people who stay gently",
+"your loneliness is temporary 🌙",
+"you are not unworthy of deep connection",
+"there are future hugs waiting for you",
+"your softness deserves protection",
+"you matter more than your loneliness admits",
+
+"there are still beautiful connections ahead",
+"your heart deserves emotionally safe love",
+"someone would feel lucky to know your thoughts",
+"you are not too quiet to matter",
+"please do not abandon your softness",
+"you deserve emotionally warm spaces",
+"your existence is not small",
+"someone would miss your laughter",
+"you are still deeply worthy of care",
+"your loneliness deserves patience",
+"there are still people you have not met yet",
+"you deserve closeness that feels gentle",
+"you are not emotionally broken",
+"someone could understand your silence too",
+"you deserve affection without fear",
+"your heart deserves emotional safety",
+"you are not difficult to care about",
+"please stay open to future connection",
+"there are calmer relationships ahead",
+"your existence matters on quiet nights too",
+"you deserve emotionally steady love",
+"someone could admire your softness deeply",
+"you are not too much for the right people",
+"there are future memories waiting for you",
+"you deserve kindness beyond loneliness",
+"your loneliness is not permanent",
+"someone somewhere understands this ache too",
+"you deserve people who make you feel safe",
+"your heart deserves reassurance",
+"you are not forgotten 🌙",
+"there are emotionally gentle people ahead",
+"someone would care about your wellbeing deeply",
+"you deserve to feel emotionally chosen",
+"you are not emotionally disposable",
+"your softness deserves companionship",
+"you matter even in silence",
+"someone could feel peace beside you",
+"your loneliness deserves comfort",
+"you deserve emotionally calm love",
+"your future still has warmth waiting",
+
+"please stop believing you are hard to love",
+"your existence matters quietly every day",
+"you deserve emotional closeness",
+"someone would miss your presence deeply",
+"your softness belongs in this world",
+"there are still safe connections ahead",
+"you deserve conversations that feel peaceful",
+"your loneliness deserves gentleness",
+"someone somewhere is hoping for a person like you",
+"you are not invisible to the world",
+"your heart deserves emotionally kind people",
+"you are still lovable during lonely seasons",
+"there are future moments of belonging ahead",
+"someone could understand your heart gently",
+"you deserve emotional warmth without fear",
+"your existence changes things quietly",
+"there are people capable of staying",
+"you deserve emotionally safe companionship",
+"you are not alone in feeling lonely",
+"your future still holds connection",
+"someone would appreciate your gentleness deeply",
+"you deserve emotionally reassuring love",
+"your loneliness is not forever",
+"there are still softer nights ahead",
+"you deserve emotional comfort",
+"someone could love your quiet heart",
+"you are not forgotten by life",
+"your heart deserves patient people",
+"there are still emotionally warm moments coming",
+"you deserve to feel understood",
+"your loneliness deserves tenderness",
+"someone would feel safe around you",
+"you are not too emotional to love",
+"there are future friendships waiting",
+"you deserve emotionally healthy connection",
+"your existence deserves appreciation",
+"someone could deeply value your presence",
+"you matter even on silent nights",
+"your softness still deserves love",
+"there are emotionally safe people ahead",
+
+"you deserve to feel emotionally seen",
+"your loneliness does not reduce your worth",
+"someone would feel lucky to sit beside you",
+"there are still meaningful conversations ahead",
+"you deserve emotionally gentle affection",
+"your heart deserves patient understanding",
+"you are not emotionally unlovable",
+"someone could cherish your softness deeply",
+"your existence deserves warmth and care",
+"there are future moments of belonging waiting",
+"you deserve emotional closeness without fear",
+"your loneliness deserves kindness",
+"someone would care about your wellbeing",
+"you are not difficult to stay with",
+"your future still holds emotional safety",
+"there are still peaceful connections ahead",
+"you deserve emotionally comforting love",
+"someone could understand your quietness",
+"your heart deserves reassurance and patience",
+"you matter even when life feels silent",
+"your softness is deeply valuable",
+"there are future nights that will feel less lonely",
+"you deserve emotionally safe people",
+"someone would appreciate your existence deeply",
+"your loneliness is temporary, not permanent",
+"you deserve emotional peace and closeness",
+"your existence still changes the world quietly",
+"someone could love your heart gently",
+"there are emotionally warm days ahead",
+"you deserve companionship that feels calm",
+"your heart deserves to feel held",
+"someone somewhere is rooting for your happiness",
+"you are still deeply lovable 🌙",
+"your loneliness deserves compassion, not shame",
+"there are people capable of understanding you",
+"you deserve emotionally healthy affection",
+"your future still holds connection and warmth",
+"someone could deeply care for your heart",
+"you matter far more than your loneliness says",
+"your existence deserves softness and love"
+
+],
+
+overthinking:[
+
+"your thoughts are creating storms bigger than reality 😭",
+"not every silence means rejection",
+"you deserve rest beyond your own thoughts",
+"please stop replaying painful possibilities",
+"your mind is tired, not broken",
+"not everything needs immediate meaning",
+"your brain deserves quiet nights too",
+"reality is often softer than fear",
+"you do not need to decode every interaction",
+"rest first, think later 🌙",
+"not every delayed reply is a disaster",
+"you deserve emotionally peaceful moments",
+"your thoughts are not always accurate",
+"please stop preparing for heartbreak constantly",
+"nothing terrible needs solving tonight",
+"you are mentally exhausting yourself",
+"your nervous system deserves gentleness",
+"you can survive uncertainty without spiraling",
+"you deserve calm beyond control",
+"your future is not ruined",
+"everything does not need analysis",
+"you are still safe here",
+"overthinking is not protection all the time",
+"you deserve softness beyond anxiety",
+"your brain deserves kindness too",
+"most fears lose power with time",
+"please come back to the present moment",
+"you are not ruining everything",
+"peace exists outside overanalysis",
+"your thoughts cannot predict every outcome",
+"you deserve quieter nights",
+"not every feeling needs solving immediately",
+"your heart deserves emotional stillness",
+"slow your breathing before your thinking",
+"you are allowed to let things unfold naturally",
+"not every situation is a hidden disaster",
+"your thoughts are louder than reality right now",
+"you deserve emotionally slower moments",
+"you do not need to prepare for abandonment constantly",
+"your mind deserves rest too",
+
+"your thoughts are not emergencies",
+"please let yourself breathe fully",
+"not every small change means something terrible",
+"you deserve emotional quietness",
+"your brain is trying too hard to protect you",
+"not every unanswered question needs solving tonight",
+"your future is not collapsing",
+"you deserve emotionally calm nights",
+"your thoughts deserve gentleness",
+"nothing terrible is happening right now",
+"your heart deserves slower moments",
+"please stop replaying old conversations",
+"not everything is your fault",
+"your mind deserves compassion",
+"you do not need perfect certainty to be okay",
+"your thoughts are draining your peace",
+"you deserve to feel emotionally grounded",
+"there is safety in the present moment",
+"not every possibility deserves your energy",
+"your brain deserves rest instead of pressure",
+"you are okay even while uncertain",
+"your heart deserves softness instead of panic",
+"nothing needs immediate fixing",
+"you are not ruining your relationships",
+"please stop preparing for emotional disasters",
+"your thoughts deserve boundaries too",
+"you deserve emotional breathing room",
+"not every interaction hides rejection",
+"your mind is overprotecting you right now",
+"please return to this moment gently",
+"you deserve peace beyond constant analysis",
+"your fears are not always reality",
+"your thoughts deserve patience",
+"you are not falling apart",
+"not every delay means abandonment",
+"your heart deserves reassurance",
+"everything does not need an explanation",
+"you deserve emotionally slower thinking",
+"your nervous system needs gentleness",
+"you are safer than your thoughts say",
+
+"please stop fighting imaginary situations",
+"your thoughts are exhausting your heart",
+"you deserve emotionally softer nights",
+"your brain deserves emotional quiet",
+"not every fear is intuition",
+"you are allowed to stop spiraling",
+"your future still holds calmness",
+"please let your mind rest for a while",
+"you deserve emotional stillness",
+"your thoughts are not facts",
+"not every feeling predicts reality",
+"you deserve emotionally peaceful mornings",
+"your heart deserves calm breathing",
+"you do not need to understand everything tonight",
+"your brain deserves kindness instead of pressure",
+"not everything is secretly falling apart",
+"you are allowed to pause mentally",
+"your mind deserves emotional safety",
+"please stop carrying tomorrow in your chest",
+"your thoughts cannot control every outcome",
+"you deserve emotional gentleness",
+"nothing terrible needs solving right now",
+"your heart deserves slower rhythms",
+"you are still deeply okay 🌙",
+"please stop reading hidden meanings into everything",
+"your future is not doomed",
+"you deserve emotionally restful moments",
+"your thoughts deserve softness",
+"you are not emotionally broken",
+"not every mistake ruins everything",
+"your brain deserves peace too",
+"you deserve emotionally safe thoughts",
+"please slow your breathing gently",
+"your nervous system deserves comfort",
+"you are not responsible for controlling everything",
+"there is still calmness ahead",
+"your thoughts deserve patience instead of fear",
+"you deserve to feel mentally safe",
+"not every uncertainty means danger",
+"your mind deserves emotional rest",
+
+"please stop expecting pain constantly",
+"your thoughts are creating unnecessary fear",
+"you deserve emotionally quiet spaces",
+"your heart deserves softness instead of pressure",
+"not every pause means rejection",
+"you are still safe even while overthinking",
+"your brain deserves emotional gentleness",
+"please stop replaying the same fear repeatedly",
+"you deserve calmer inner conversations",
+"nothing terrible is happening this second",
+"your thoughts deserve boundaries",
+"you are not failing because you feel uncertain",
+"your mind deserves emotional kindness",
+"please return to your breathing slowly",
+"you deserve emotionally stable moments",
+"your fears do not define reality",
+"you are allowed to stop overanalyzing",
+"your heart deserves peaceful nights",
+"not every thought deserves your attention",
+"you deserve emotional quietness",
+"your brain deserves stillness too",
+"you are okay even without certainty",
+"please stop preparing for heartbreak every minute",
+"your thoughts deserve compassion",
+"you deserve emotionally slower living",
+"not every silence is personal",
+"your nervous system deserves rest",
+"your mind deserves emotionally safe spaces",
+"you are not ruining your future",
+"please stop carrying invisible panic",
+"your thoughts are overwhelming your peace",
+"you deserve emotional reassurance",
+"not everything needs solving tonight",
+"your brain deserves softness",
+"you are safer than your fears believe",
+"your heart deserves emotional calmness",
+"please stop punishing yourself mentally",
+"your thoughts deserve patience",
+"you deserve emotionally warm moments",
+"there are calmer nights ahead 🌙",
+
+"your brain is trying too hard to protect you",
+"you deserve emotionally gentle thoughts",
+"please stop expecting abandonment constantly",
+"your thoughts deserve emotional rest",
+"not every uncomfortable feeling is danger",
+"your mind deserves peace beyond overanalysis",
+"you are not emotionally failing",
+"your heart deserves slower breathing",
+"you deserve mentally safe moments",
+"your fears deserve compassion, not shame",
+"please stop replaying worst-case scenarios",
+"your thoughts are not prophecies",
+"you deserve emotional softness instead of panic",
+"your brain deserves understanding",
+"not everything is secretly going wrong",
+"you are still okay right now",
+"your mind deserves emotionally calm nights",
+"please let things unfold naturally sometimes",
+"your thoughts deserve kindness",
+"you deserve emotionally peaceful spaces",
+"nothing terrible needs immediate answers",
+"your heart deserves quietness",
+"please stop analyzing every tiny detail",
+"your nervous system deserves gentleness",
+"your future still has softness ahead",
+"you deserve emotional breathing room",
+"not every uncertainty needs fixing",
+"your thoughts deserve emotional safety",
+"you are allowed to rest mentally",
+"your heart deserves emotional stillness",
+"please stop carrying invisible fear alone",
+"your mind deserves patience",
+"you deserve emotionally balanced moments",
+"you are not trapped inside your thoughts forever",
+"your brain deserves peace too",
+"please slow down your inner panic",
+"your thoughts are louder than reality right now",
+"you deserve emotional comfort and rest",
+"your heart deserves calmness tonight",
+"you are still deeply safe 🌙"
+
+],
+
+tired:[
+
+"you survived today and that matters 😴",
+"rest is productive too",
+"your worth is not tied to productivity",
+"please drink water and unclench your shoulders",
+"you deserve softness after difficult days",
+"being tired does not make you lazy",
+"your body deserves gentleness too",
+"you are allowed to slow down",
+"resting is not wasting time",
+"your exhaustion deserves compassion",
+"you do not need to keep proving yourself",
+"sleep is healing too",
+"your heart deserves quiet nights",
+"it is okay if today was all you could handle",
+"you deserve rest without guilt",
+"your nervous system needs softness",
+"you are still enough while resting",
+"you carried enough for one day",
+"please stop punishing yourself for being human",
+"tomorrow can wait for now",
+"your body deserves patience",
+"you deserve peaceful mornings someday",
+"you are not falling behind by slowing down",
+"small efforts still matter",
+"rest now, the world can pause 🌙",
+"your exhaustion is understandable",
+"you deserve emotional recovery too",
+"you have already done enough today",
+"gentleness belongs to you too",
+"being exhausted is not weakness",
+"your heart deserves stillness",
+"you do not need to earn rest",
+"take tonight slowly",
+"resting is part of healing",
+"your body is asking for softness",
+"you deserve comfort after difficult hours",
+"please allow yourself to breathe slowly",
+"you are allowed to stop carrying everything",
+"there is no shame in needing rest",
+"your mind deserves sleep too",
+
+"you do not need to keep surviving at full speed",
+"your body deserves emotional gentleness",
+"rest is not failure",
+"you deserve slower evenings",
+"please stop expecting endless energy from yourself",
+"your exhaustion deserves kindness",
+"you are not weak for feeling drained",
+"your body deserves patience tonight",
+"healing requires quiet moments too",
+"you deserve emotionally restful nights",
+"please let yourself pause for a while",
+"your tiredness is deeply human",
+"there is no shame in slowing down",
+"your nervous system deserves calmness",
+"you deserve softness after stressful days",
+"your body is asking to be cared for",
+"you are still worthy while resting",
+"sleep is not laziness",
+"you deserve to feel emotionally safe while resting",
+"your heart deserves gentleness too",
+"you have already survived enough for today",
+"please stop carrying invisible pressure",
+"your exhaustion deserves understanding",
+"resting does not erase your value",
+"you deserve emotionally peaceful moments",
+"your body deserves warmth and comfort",
+"being tired does not make you less capable",
+"you deserve slower mornings someday",
+"your soul deserves quietness",
+"please stop feeling guilty for needing rest",
+"your heart deserves emotional stillness",
+"you are not falling apart for being exhausted",
+"rest is part of surviving",
+"your body deserves compassion",
+"you deserve peaceful sleep tonight",
+"you are allowed to emotionally recharge",
+"your tiredness deserves patience",
+"there are softer days ahead",
+"your body deserves emotional safety",
+"please breathe slowly and rest gently",
+
+"you have carried enough today",
+"your body deserves softer treatment",
+"please stop forcing yourself beyond your limits",
+"you deserve rest without explanation",
+"your exhaustion is valid",
+"your heart deserves emotionally calm nights",
+"you are allowed to take breaks",
+"resting is part of healing 🌙",
+"your body deserves kindness beyond productivity",
+"you do not need to earn sleep",
+"your mind deserves emotional quietness",
+"you deserve comfort after difficult hours",
+"please stop pressuring yourself constantly",
+"your tiredness deserves understanding",
+"you are not lazy for needing rest",
+"your nervous system deserves slower rhythms",
+"your body deserves care beyond expectations",
+"there is no shame in emotional exhaustion",
+"you deserve emotionally safe rest",
+"your heart deserves patience too",
+"please take tonight slowly",
+"your body deserves emotional softness",
+"you have already done enough",
+"you deserve to wake up feeling lighter someday",
+"rest is not weakness",
+"your body deserves emotionally gentle moments",
+"please stop carrying tomorrow tonight",
+"your exhaustion deserves warmth",
+"you deserve peaceful breathing",
+"your heart deserves slower living",
+"you are allowed to recover",
+"your body deserves emotionally calm spaces",
+"resting is deeply human",
+"your nervous system deserves kindness",
+"you deserve quiet nights without guilt",
+"your tiredness does not reduce your worth",
+"your body deserves gentleness tonight",
+"you are still enough even while resting",
+"please let yourself relax fully",
+"your mind deserves stillness too",
+
+"you deserve emotionally slower days",
+"your body deserves peace",
+"please stop treating rest like a reward",
+"you are not weak for feeling tired",
+"your heart deserves emotional recovery",
+"you deserve nights that feel soft and safe",
+"your exhaustion deserves compassion, not judgment",
+"you are allowed to slow your life down",
+"resting helps your heart heal too",
+"your body deserves emotional patience",
+"please stop overworking yourself emotionally",
+"your tiredness deserves understanding",
+"you deserve calmness after stressful days",
+"your nervous system deserves emotional comfort",
+"your body deserves peaceful rhythms",
+"you are not failing because you need rest",
+"your heart deserves slower breathing",
+"resting is part of being alive",
+"your body deserves emotional gentleness",
+"please stop feeling guilty for pausing",
+"you deserve emotionally restful mornings",
+"your exhaustion deserves softness",
+"your body deserves emotional care",
+"you are allowed to recharge slowly",
+"your mind deserves peaceful silence",
+"please take care of yourself tonight",
+"you deserve emotionally quiet nights",
+"your tiredness deserves patience and kindness",
+"rest is emotionally necessary too",
+"your heart deserves emotional stillness",
+"you are not behind because you are tired",
+"your body deserves warm comforting moments",
+"please stop punishing yourself internally",
+"you deserve emotionally calm spaces",
+"your nervous system deserves rest beyond survival",
+"you are still deeply worthy while exhausted",
+"your body deserves softness and care",
+"please slow your breathing gently",
+"you deserve peaceful emotional recovery",
+"your exhaustion deserves tenderness 🌙",
+
+"you deserve to rest without shame",
+"your body deserves emotionally healthy rhythms",
+"please stop carrying everything alone",
+"your tiredness is understandable",
+"you deserve emotionally safe comfort",
+"your body deserves gentleness every day",
+"you are allowed to emotionally recharge",
+"resting is not giving up",
+"your exhaustion deserves emotional kindness",
+"you deserve slower and softer nights",
+"your body deserves emotional warmth",
+"please stop expecting endless strength from yourself",
+"you deserve emotionally peaceful rest",
+"your heart deserves gentleness after difficult days",
+"your nervous system deserves slower moments",
+"you are not weak for needing sleep",
+"your body deserves emotional calmness",
+"rest is helping you heal quietly",
+"your tiredness deserves patience",
+"you deserve emotionally comforting mornings",
+"please stop pressuring yourself constantly",
+"your body deserves emotionally quiet moments",
+"you deserve emotional softness beyond productivity",
+"your heart deserves peaceful recovery",
+"your exhaustion is deeply human",
+"please rest your mind gently tonight",
+"you deserve emotionally calm breathing",
+"your body deserves emotional peace",
+"you are still enough while resting 🌙",
+"your nervous system deserves kindness and quietness",
+"please stop carrying invisible exhaustion alone",
+"you deserve emotionally soft spaces",
+"your body deserves emotional healing too",
+"resting is part of becoming whole again",
+"your tiredness deserves understanding, not guilt",
+"you deserve emotionally slower living",
+"your heart deserves calm restful nights",
+"your body deserves comfort beyond survival mode",
+"please let yourself rest fully tonight",
+"you deserve emotional and physical peace"
+
+]
+
+};
+
+
+/* SHOW MESSAGE */
+
+const messageBackgrounds = {
+
+sad:[
+
+"images/sad1.jpg",
+"images/sad2.jpg",
+"images/sad3.jpg",
+"images/sad4.jpg",
+"images/sad5.jpg"
+
+],
+
+anxious:[
+
+"images/anxious1.jpg",
+"images/anxious2.jpg",
+"images/anxious3.jpg",
+"images/anxious4.jpg",
+"images/anxious5.jpg"
+
+],
+
+lonely:[
+
+"images/lonely1.jpg",
+"images/lonely2.jpg",
+"images/lonely3.jpg",
+"images/lonely4.jpg",
+"images/lonely5.jpg"
+
+],
+
+overthinking:[
+
+"images/overthinking1.jpg",
+"images/overthinking2.jpg",
+"images/overthinking3.jpg",
+"images/overthinking4.jpg",
+"images/overthinking5.jpg"
+
+],
+
+tired:[
+
+"images/tired1.jpg",
+"images/tired2.jpg",
+"images/tired3.jpg",
+"images/tired4.jpg",
+"images/tired5.jpg"
+
+]
+
+};
+
+const overlays = [
+
+/* PASTEL GLOW */
+
+"linear-gradient(135deg, rgba(255,182,193,0.38), rgba(173,216,255,0.32))",
+
+"linear-gradient(135deg, rgba(255,218,185,0.40), rgba(221,160,221,0.30))",
+
+"linear-gradient(135deg, rgba(255,240,200,0.38), rgba(180,230,255,0.28))",
+
+"linear-gradient(135deg, rgba(255,200,220,0.34), rgba(200,255,240,0.28))",
+
+"linear-gradient(135deg, rgba(210,180,255,0.34), rgba(255,220,230,0.30))",
+
+"linear-gradient(135deg, rgba(255,210,170,0.38), rgba(255,180,220,0.28))",
+
+"linear-gradient(135deg, rgba(190,230,255,0.34), rgba(255,210,240,0.28))",
+
+"linear-gradient(135deg, rgba(255,230,190,0.38), rgba(200,240,255,0.26))",
+
+"linear-gradient(135deg, rgba(255,190,210,0.36), rgba(220,210,255,0.28))",
+
+"linear-gradient(135deg, rgba(200,255,240,0.32), rgba(255,220,180,0.32))",
+
+/* NEON PASTEL */
+
+"linear-gradient(135deg, rgba(255,105,180,0.28), rgba(135,206,250,0.24))",
+
+"linear-gradient(135deg, rgba(255,182,193,0.32), rgba(0,255,255,0.18))",
+
+"linear-gradient(135deg, rgba(255,160,200,0.30), rgba(180,255,230,0.22))",
+
+"linear-gradient(135deg, rgba(255,220,120,0.26), rgba(180,220,255,0.24))",
+
+"linear-gradient(135deg, rgba(200,180,255,0.28), rgba(255,190,240,0.24))",
+
+"linear-gradient(135deg, rgba(255,170,220,0.28), rgba(255,240,170,0.24))",
+
+"linear-gradient(135deg, rgba(180,255,255,0.24), rgba(255,200,230,0.28))",
+
+"linear-gradient(135deg, rgba(255,210,150,0.30), rgba(220,180,255,0.24))",
+
+"linear-gradient(135deg, rgba(255,150,180,0.30), rgba(180,240,255,0.22))",
+
+"linear-gradient(135deg, rgba(210,255,220,0.24), rgba(255,180,210,0.28))",
+
+/* GLOWY CLOUD */
+
+"linear-gradient(180deg, rgba(255,255,255,0.20), rgba(255,200,230,0.26))",
+
+"linear-gradient(180deg, rgba(255,245,220,0.22), rgba(190,230,255,0.24))",
+
+"linear-gradient(180deg, rgba(255,220,240,0.22), rgba(220,255,240,0.22))",
+
+"linear-gradient(180deg, rgba(255,228,196,0.24), rgba(210,220,255,0.22))",
+
+"linear-gradient(180deg, rgba(245,220,255,0.22), rgba(255,240,210,0.22))",
+
+"linear-gradient(180deg, rgba(220,245,255,0.22), rgba(255,210,220,0.24))",
+
+"linear-gradient(180deg, rgba(255,235,210,0.24), rgba(210,255,250,0.20))",
+
+"linear-gradient(180deg, rgba(255,210,230,0.24), rgba(220,230,255,0.22))",
+
+"linear-gradient(180deg, rgba(255,255,210,0.20), rgba(255,190,220,0.26))",
+
+"linear-gradient(180deg, rgba(220,255,240,0.22), rgba(255,220,180,0.24))",
+
+/* SKETCHY WATERCOLOUR */
+
+"linear-gradient(145deg, rgba(255,205,220,0.32), rgba(255,245,200,0.20), rgba(200,235,255,0.22))",
+
+"linear-gradient(145deg, rgba(220,210,255,0.30), rgba(255,220,240,0.22), rgba(255,240,210,0.20))",
+
+"linear-gradient(145deg, rgba(255,190,210,0.32), rgba(220,255,240,0.20), rgba(200,220,255,0.20))",
+
+"linear-gradient(145deg, rgba(255,228,196,0.30), rgba(255,180,220,0.22), rgba(180,240,255,0.20))",
+
+"linear-gradient(145deg, rgba(255,210,230,0.30), rgba(240,240,255,0.20), rgba(255,235,200,0.22))",
+
+"linear-gradient(145deg, rgba(220,255,250,0.24), rgba(255,220,240,0.24), rgba(255,240,180,0.18))",
+
+"linear-gradient(145deg, rgba(255,180,200,0.30), rgba(180,220,255,0.22), rgba(255,245,220,0.20))",
+
+"linear-gradient(145deg, rgba(255,245,210,0.24), rgba(220,210,255,0.24), rgba(255,190,220,0.22))",
+
+"linear-gradient(145deg, rgba(200,240,255,0.24), rgba(255,220,210,0.24), rgba(255,250,220,0.18))",
+
+"linear-gradient(145deg, rgba(255,205,235,0.28), rgba(210,255,240,0.20), rgba(220,220,255,0.22))",
+
+/* DREAMCORE */
+
+"linear-gradient(135deg, rgba(255,170,200,0.28), rgba(170,220,255,0.24), rgba(255,255,200,0.16))",
+
+"linear-gradient(135deg, rgba(255,200,150,0.28), rgba(220,180,255,0.22), rgba(200,255,255,0.16))",
+
+"linear-gradient(135deg, rgba(255,180,240,0.28), rgba(180,255,220,0.20), rgba(255,230,180,0.18))",
+
+"linear-gradient(135deg, rgba(180,220,255,0.26), rgba(255,200,220,0.24), rgba(255,255,180,0.16))",
+
+"linear-gradient(135deg, rgba(255,210,180,0.30), rgba(200,220,255,0.22), rgba(255,180,210,0.18))",
+
+"linear-gradient(135deg, rgba(220,200,255,0.26), rgba(255,240,180,0.20), rgba(255,180,220,0.18))",
+
+"linear-gradient(135deg, rgba(255,180,180,0.30), rgba(180,255,240,0.18), rgba(220,220,255,0.20))",
+
+"linear-gradient(135deg, rgba(255,240,200,0.24), rgba(255,180,240,0.22), rgba(180,220,255,0.18))",
+
+"linear-gradient(135deg, rgba(220,255,220,0.22), rgba(255,210,210,0.24), rgba(220,220,255,0.18))",
+
+"linear-gradient(135deg, rgba(255,200,240,0.26), rgba(200,255,255,0.18), rgba(255,230,200,0.20))"
+
+];
+
+function showMessage(type){
+
+    const randomMessage =
+
+    messages[type][
+    Math.floor(
+    Math.random() *
+    messages[type].length
+    )
+    ];
+
+    const randomImage =
+
+    messageBackgrounds[type][
+    Math.floor(
+    Math.random() *
+    messageBackgrounds[type].length
+    )
+    ];
+
+    const randomOverlay =
+
+    overlays[
+    Math.floor(
+    Math.random() *
+    overlays.length
+    )
+    ];
+
+    const box =
+    document.getElementById("messageBox");
+
+    box.style.opacity = "0";
+
+    box.style.transform =
+    "translateY(12px) scale(0.98)";
+
+    setTimeout(()=>{
+
+        box.innerHTML =
+
+`<div class="message-inner">
+${randomMessage}
+</div>`;
+
+        box.style.background =
+
+`${randomOverlay},
+url('${randomImage}')`;
+
+        box.style.backgroundSize =
+        "cover";
+
+        box.style.backgroundPosition =
+        "center";
+
+        box.style.opacity = "1";
+
+        box.style.transform =
+        "translateY(0px) scale(1)";
+
+    },220);
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Night Mode</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    min-height:100vh;
+
+    overflow:hidden;
+
+    font-family:'Quicksand',sans-serif;
+
+    background:
+    linear-gradient(
+    180deg,
+    #050816,
+    #0b1020,
+    #111827
+    );
+
+    color:white;
+
+    position:relative;
+}
+
+/* STARS */
+
+.stars{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    z-index:0;
+}
+
+.star{
+
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
+    background:white;
+
+    border-radius:50%;
+
+    opacity:0.7;
+
+    animation:twinkle 4s infinite ease-in-out;
+}
+
+@keyframes twinkle{
+
+    0%{
+        opacity:0.2;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0.2;
+    }
+}
+
+/* MOON */
+
+.moon{
+
+    position:absolute;
+
+    top:25px;
+    right:25px;
+
+    width:130px;
+    height:130px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+    circle,
+    #f8fbff,
+    #dbeafe
+    );
+
+    box-shadow:
+    0 0 80px rgba(255,255,255,0.30),
+    0 0 150px rgba(173,216,255,0.18);
+
+    z-index:1;
+
+    animation:floatMoon 5s ease-in-out infinite;
+}
+
+@keyframes floatMoon{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+/* MAIN */
+
+.container{
+
+    position:relative;
+
+    z-index:2;
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    padding:
+    70px 20px 340px;
+}
+
+/* TITLE */
+
+.title{
+
+    text-align:center;
+
+    font-size:
+    clamp(2.4rem,6vw,4.5rem);
+
+    margin-bottom:20px;
+
+    text-shadow:
+    0 0 25px rgba(255,255,255,0.18);
+}
+
+/* SUBTITLE */
+
+.subtitle{
+
+    text-align:center;
+
+    color:
+    rgba(255,255,255,0.78);
+
+    line-height:1.9;
+
+    max-width:700px;
+
+    margin-bottom:55px;
+}
+
+/* MESSAGE BOX */
+
+.box{
+
+    width:
+    min(92%, 720px);
+
+    display:inline-flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:38px 34px;
+
+    border-radius:34px;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    border:
+    1px solid rgba(255,255,255,0.10);
+
+    backdrop-filter:blur(18px);
+
+    line-height:2;
+
+    color:
+    rgba(255,255,255,0.96);
+
+    font-size:1.08rem;
+
+    box-shadow:
+    0 0 55px rgba(173,216,255,0.14);
+
+    animation:floatBox 6s ease-in-out infinite;
+
+    transition:
+    opacity 1.8s ease;
+
+    min-height:260px;
+}
+
+/* FLOAT BOX */
+
+@keyframes floatBox{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+/* FLOATING TEXTS */
+
+.floating{
+
+    position:fixed;
+
+    font-size:0.9rem;
+
+    color:
+    rgba(255,255,255,0.60);
+
+    pointer-events:none;
+
+    z-index:1;
+
+    letter-spacing:1px;
+
+    text-shadow:
+    0 0 8px rgba(255,255,255,0.20);
+
+    opacity:0;
+}
+
+.floating.show{
+
+    animation:
+    riseText 12s linear infinite;
+}
+
+@keyframes riseText{
+
+    0%{
+
+        transform:
+        translateY(120px);
+
+        opacity:0;
+    }
+
+    15%{
+
+        opacity:0.15;
+    }
+
+    30%{
+
+        opacity:0.45;
+    }
+
+    45%{
+
+        opacity:0.7;
+    }
+
+    60%{
+
+        opacity:0.9;
+    }
+
+    80%{
+
+        opacity:0.65;
+    }
+
+    100%{
+
+        transform:
+        translateY(-320px);
+
+        opacity:0;
+    }
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+
+    position:fixed;
+
+    top:20px;
+    left:20px;
+
+    padding:12px 22px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:
+    rgba(255,255,255,0.10);
+
+    color:white;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(10px);
+
+    transition:0.3s ease;
+
+    z-index:20;
+}
+
+.back-btn:hover{
+
+    background:
+    rgba(255,255,255,0.18);
+
+    transform:translateY(-2px);
+}
+
+/* ATLAS CORE */
+
+.atlas-core{
+
+    position:fixed;
+
+    bottom:15px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:220px;
+    height:220px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:15;
+
+    pointer-events:none;
+}
+
+/* BREATHING HALO */
+
+.breath{
+
+    position:absolute;
+
+    width: 240px;
+    height:240px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+    rgba(173,216,255,0.28),
+    rgba(173,216,255,0.02)
+    );
+
+    animation:breathe 5s ease-in-out infinite;
+}
+
+@keyframes breathe{
+
+    0%{
+        transform:scale(0.88);
+        opacity:0.45;
+    }
+
+    50%{
+        transform:scale(1);
+        opacity:0.85;
+    }
+
+    100%{
+        transform:scale(0.88);
+        opacity:0.45;
+    }
+}
+
+/* ATLAS SYSTEM */
+
+.atlas-system{
+
+    position:relative;
+
+    z-index:2;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    width:100%;
+
+    padding:20px;
+}
+
+/* MAIN TITLE */
+
+.atlas{
+
+    font-size:1.15rem;
+
+    font-weight:700;
+
+    letter-spacing:8px;
+
+    margin-bottom:10px;
+
+    color:
+    rgba(255,255,255,0.98);
+
+    text-shadow:
+    0 0 15px rgba(173,216,255,0.55),
+    0 0 30px rgba(173,216,255,0.35),
+    0 0 60px rgba(173,216,255,0.22);
+
+    animation:atlasBreath 4s ease-in-out infinite;
+}
+
+.atlas-line{
+
+    font-size:0.84rem;
+
+    line-height:1.8;
+
+    letter-spacing:2px;
+
+    color:
+    rgba(255,255,255,0.82);
+
+    text-shadow:
+    0 0 10px rgba(255,255,255,0.10);
+}
+
+@keyframes atlasBreath{
+
+    0%{
+
+        opacity:0.75;
+
+        transform:scale(0.98);
+    }
+
+    50%{
+
+        opacity:1;
+
+        transform:scale(1.04);
+    }
+
+    100%{
+
+        opacity:0.75;
+
+        transform:scale(0.98);
+    }
+}
+
+
+/* ENTRY SCREEN */
+
+.entry-screen{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+    180deg,
+  #f3ede4,
+  #e7ddd1,
+  #d8cdc0
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+    transition:
+    opacity 0.8s ease,
+    visibility 0.8s ease;
+}
+
+/* HIDE ENTRY */
+
+.entry-screen.hide{
+
+    opacity:0;
+
+    visibility:hidden;
+}
+
+/* ENTRY BUTTON */
+
+.enter-night{
+
+    padding:24px 42px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:
+    rgba(255,255,255,0.42);
+
+    color:#4b3f35;
+
+    font-size:1.1rem;
+
+    font-weight:700;
+
+    font-family:'Quicksand',sans-serif;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(10px);
+
+    box-shadow:
+    0 0 35px rgba(0,0,0,0.08);
+
+    transition:0.4s ease;
+}
+
+/* HOVER */
+
+.enter-night:hover{
+
+    transform:
+    translateY(-4px)
+    scale(1.04);
+
+    background:
+    rgba(255,255,255,0.62);
+
+    box-shadow:
+    0 0 50px rgba(0,0,0,0.12);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NIGHT MUSIC -->
+
+<audio id="nightMusic" loop>
+
+    <source src="music/night.mp3"
+    type="audio/mp3">
+
+</audio>    
+
+<!-- ENTRY SCREEN -->
+
+<div class="entry-screen"
+id="entryScreen">
+
+    <button class="enter-night"
+    onclick="enterNightMode()">
+
+        press me to enter night mode 🌙✨💤
+
+    </button>
+
+</div>    
+
+<div class="stars" id="stars"></div>
+
+<button class="back-btn"
+onclick="window.location.href='home.html'">
+
+← Home
+
+</button>
+
+<div class="moon"></div>
+
+<div class="container">
+
+    <h1 class="title">
+        Night Mode 🌙
+    </h1>
+
+    <p class="subtitle">
+        for the nights your thoughts become too loud and your heart needs somewhere soft to rest ✨
+    </p>
+
+    <div class="box" id="messageBox">
+
+        hey 🌙
+        <br><br>
+        you survived today.
+        <br>
+        that already matters more than you think.
+        <br><br>
+        rest your shoulders.
+        <br>
+        unclench your jaw.
+        <br>
+        breathe slowly.
+        <br><br>
+        nothing needs to be figured out tonight.
+
+    </div>
+
+</div>
+
+<div class="atlas-core">
+
+    <div class="breath"></div>
+
+    <div class="atlas-system">
+
+        <div class="atlas">
+            A.T.L.A.S.
+        </div>
+
+        <div class="atlas-line">
+            Always There
+        </div>
+
+        <div class="atlas-line">
+            Loving Across Silence 🌙
+        </div>
+
+    </div>
+
+</div>
+
+<div class="floating"
+style="left:6%; bottom:0%; animation-delay:0s;">
+
+rest slowly 🌙
+
+</div>
+
+<div class="floating"
+style="right:7%; bottom:5%; animation-delay:4s;">
+
+you are safe here
+
+</div>
+
+<div class="floating"
+style="left:8%; bottom:8%; animation-delay:8s;">
+
+one quiet night at a time
+
+</div>
+
+<div class="floating"
+style="right:8%; bottom:10%; animation-delay:2s;">
+
+softness still exists
+
+</div>
+
+<script>
+
+/* NIGHT MUSIC */
+
+const nightMusic =
+document.getElementById("nightMusic");
+
+nightMusic.volume = 0.25;
+
+/* ENTER NIGHT MODE */
+
+function enterNightMode(){
+
+    const screen =
+    document.getElementById("entryScreen");
+
+    screen.classList.add("hide");
+
+    nightMusic.play();
+
+}
+
+/* STARS */
+
+const stars =
+document.getElementById("stars");
+
+for(let i = 0; i < 140; i++){
+
+    const star =
+    document.createElement("div");
+
+    star.classList.add("star");
+
+    star.style.left =
+    Math.random()*100 + "%";
+
+    star.style.top =
+    Math.random()*100 + "%";
+
+    star.style.animationDelay =
+    Math.random()*5 + "s";
+
+    stars.appendChild(star);
+}
+
+/* NIGHT MESSAGES */
+
+const messages = [
+
+`some nights are meant for surviving quietly 🌙`,
+
+`please don’t fight every thought tonight`,
+
+`you deserve gentleness too`,
+
+`the world can wait until morning`,
+
+`you are allowed to rest without guilt`,
+
+`even difficult hearts deserve softness`,
+
+`breathe slowly. you’re doing okay.`,
+
+`you don’t need to carry everything tonight 🌙`,
+
+`let the night hold some of the weight`,
+
+`your tired heart still deserves kindness`,
+
+`it’s okay to slow down now ✨`,
+
+`you are allowed to rest`,
+
+`some healing happens quietly`,
+
+`the moon has seen softer versions of you too 🌙`,
+
+`nothing is chasing you tonight`,
+
+`stay gentle with yourself`,
+
+`you made it through another day 🤍`,
+
+`you don’t have to solve everything right now`,
+
+`your softness is not weakness`,
+
+`rest is productive too 🌙`,
+
+`you are still worthy on difficult days`,
+
+`even silence can comfort you slowly`,
+
+`your heart can breathe here`,
+
+`some nights are for surviving softly ✨`,
+
+`you are not behind in life`,
+
+`the stars are quieter tonight too`,
+
+`tomorrow can wait a little 🌙`
+
+];
+
+const messageBox =
+document.getElementById("messageBox");
+
+/* SHOW FLOATING TEXTS */
+
+setTimeout(() => {
+
+    document
+    .querySelectorAll(".floating")
+    .forEach(text => {
+
+        text.classList.add("show");
+
+    });
+
+},5000);
+
+/* MESSAGE TRANSITION */
+
+setInterval(() => {
+
+    messageBox.style.opacity = 0;
+
+    setTimeout(() => {
+
+        const random =
+        messages[
+        Math.floor(
+        Math.random() *
+        messages.length
+        )];
+
+        messageBox.innerHTML = random;
+
+        messageBox.style.opacity = 1;
+
+    },1400);
+
+},7500);
+
+</script>
+
+</body>
+</html>

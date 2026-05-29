@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Letters From Me</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    min-height:100vh;
+
+    font-family:'Quicksand',sans-serif;
+
+    background:
+    linear-gradient(
+    135deg,
+    #0b1020,
+    #111827,
+    #1a1028,
+    #0f172a
+    );
+
+    overflow-x:hidden;
+
+    color:white;
+
+    position:relative;
+}
+
+/* GLOW */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+    radial-gradient(circle at 20% 30%,
+    rgba(255,182,193,0.08),
+    transparent 20%),
+
+    radial-gradient(circle at 80% 70%,
+    rgba(173,216,255,0.08),
+    transparent 25%),
+
+    radial-gradient(circle at 50% 50%,
+    rgba(255,255,255,0.03),
+    transparent 30%);
+
+    animation:floatGlow 10s ease-in-out infinite alternate;
+
+    z-index:-1;
+}
+
+@keyframes floatGlow{
+
+    from{
+        transform:translateY(0px);
+    }
+
+    to{
+        transform:translateY(-20px);
+    }
+}
+
+/* CONTAINER */
+
+.container{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:40px 20px 70px;
+}
+
+/* TOP */
+
+.top{
+
+    text-align:center;
+
+    margin-bottom:50px;
+}
+
+.title{
+
+    font-size:
+    clamp(2.2rem,5vw,4rem);
+
+    margin-bottom:14px;
+}
+
+.subtitle{
+
+    color:
+    rgba(255,255,255,0.72);
+
+    line-height:1.7;
+
+    max-width:700px;
+
+    margin:auto;
+}
+
+/* GRID */
+
+.grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+    max-width:760px;
+
+    margin:auto;
+}
+
+/* BUTTON */
+
+.letter-btn{
+
+    border-radius:30px;
+
+    background:
+    rgba(255,255,255,0.07);
+
+    border:
+    1px solid rgba(255,255,255,0.10);
+
+    backdrop-filter:blur(14px);
+
+    cursor:pointer;
+
+    transition:
+    0.4s ease;
+
+    padding:28px;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.letter-head{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+}
+.letter-btn:hover{
+
+    transform:
+    translateY(-8px)
+    scale(1.02);
+
+    background:
+    rgba(255,255,255,0.11);
+
+    box-shadow:
+    0 0 30px rgba(255,182,193,0.10);
+}
+
+.letter-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:160px;
+    height:160px;
+
+    background:
+    radial-gradient(
+    rgba(255,255,255,0.12),
+    transparent 70%
+    );
+
+    top:-60px;
+    right:-60px;
+
+    opacity:0;
+
+    transition:0.4s ease;
+}
+
+.letter-btn:hover::before{
+
+    opacity:1;
+}
+
+/* ICON */
+
+.icon{
+
+    width:58px;
+    height:58px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:1.8rem;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    flex-shrink:0;
+}
+
+/* TITLE */
+
+.btn-title{
+
+    font-size:1.2rem;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+}
+
+/* TEXT */
+
+.btn-text{
+
+    color:
+    rgba(255,255,255,0.72);
+
+    line-height:1.6;
+
+    font-size:0.95rem;
+}
+
+.tap-note{
+
+    margin-top:12px;
+
+    font-size:0.78rem;
+
+    color:rgba(255,255,255,0.72);
+
+    letter-spacing:2.5px;
+
+    text-transform:uppercase;
+
+    font-weight:700;
+}
+
+/* LETTER BOX */
+
+.letter-box{
+
+    flex-direction:column;
+
+    margin-top:24px;
+
+    width:85%;
+
+    max-width:560px;
+
+    margin-inline:auto;
+
+    padding:55px 40px;
+
+    border-radius:24px;
+
+    min-height:220px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    font-family:'Caveat',cursive;
+
+    font-size:2.2rem;
+
+    line-height:1.8;
+
+    color:#3e2f28;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.18);
+
+    animation:
+    fadeLetter 0.5s ease;
+}
+
+@keyframes fadeLetter{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(20px)
+        scale(0.96);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0)
+        scale(1);
+
+    }
+}
+
+.hidden{
+
+    display:none;
+}
+
+/* SAD */
+
+.paper-sad{
+
+    background:
+    linear-gradient(
+    180deg,
+    #dbeafe,
+    #bfdbfe
+    );
+}
+
+/* BAD DAY */
+
+.paper-badday{
+
+    background:
+    linear-gradient(
+    180deg,
+    #e5e7eb,
+    #d1d5db
+    );
+}
+
+/* UNLOVABLE */
+
+.paper-unlovable{
+
+    background:
+    linear-gradient(
+    180deg,
+    #ffe4e6,
+    #fecdd3
+    );
+}
+
+/* OVERTHINKING */
+
+.paper-overthinking{
+
+    background:
+    linear-gradient(
+    180deg,
+    #ddd6fe,
+    #c4b5fd
+    );
+}
+
+/* HUG */
+
+.paper-hug{
+
+    background:
+    linear-gradient(
+    180deg,
+    #fef3c7,
+    #fde68a
+    );
+}
+
+/* PROUD */
+
+.paper-proud{
+
+    background:
+    linear-gradient(
+    180deg,
+    #fef9c3,
+    #fde047
+    );
+}
+
+/* PAPER GLOW */
+
+.letter-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.06),
+    transparent
+    );
+
+    transform:translateX(-100%);
+
+    animation:paperGlow 6s linear infinite;
+}
+
+@keyframes paperGlow{
+
+    to{
+        transform:translateX(100%);
+    }
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+
+    position:fixed;
+
+    top:20px;
+    left:20px;
+
+    padding:12px 22px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:
+    rgba(255,255,255,0.10);
+
+    color:white;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(10px);
+
+    transition:0.3s ease;
+
+    z-index:20;
+}
+
+.back-btn:hover{
+
+    background:
+    rgba(255,255,255,0.18);
+
+    transform:
+    translateY(-2px)
+    scale(1.03);
+
+    box-shadow:
+    0 0 22px rgba(173,216,255,0.18);
+}
+
+/* FOOTER */
+
+.footer{
+
+    margin-top:60px;
+
+    text-align:center;
+
+    color:
+    rgba(255,255,255,0.40);
+
+    font-size:0.9rem;
+}
+
+</style>
+
+</head>
+
+<body>
+   
+
+<!-- BACK -->
+
+<button class="back-btn"
+onclick="window.location.href='home.html'">
+
+← Home
+
+</button>
+
+<div class="container">
+
+    <!-- TOP -->
+
+    <div class="top">
+
+        <h1 class="title">
+            Letters From Me 💌
+        </h1>
+
+        <p class="subtitle">
+            tiny reminders for difficult days, loud thoughts and quiet nights 🌙
+        </p>
+
+    </div>
+
+<!-- GRID -->
+
+<div class="grid">
+
+    <!-- SAD -->
+
+    <div class="letter-btn"
+    onclick="showLetter('sad', this)">
+
+        <div class="letter-head">
+
+            <div class="icon">☁️</div>
+
+            <div>
+
+                <div class="btn-title">
+                    Read when sad
+                </div>
+
+                <div class="btn-text">
+                    gentle reminders for heavy days
+                </div>
+
+                <div class="tap-note">
+                    tap to open 💌
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="letter-box hidden"></div>
+
+    </div>
+
+    <!-- BAD DAY -->
+
+    <div class="letter-btn"
+    onclick="showLetter('badday', this)">
+
+        <div class="letter-head">
+
+            <div class="icon">🌧️</div>
+
+            <div>
+
+                <div class="btn-title">
+                    Read after a bad day
+                </div>
+
+                <div class="btn-text">
+                    for emotionally exhausting moments
+                </div>
+
+                <div class="tap-note">
+                    tap to open 💌
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="letter-box hidden"></div>
+
+    </div>
+
+    <!-- UNLOVABLE -->
+
+    <div class="letter-btn"
+    onclick="showLetter('unlovable', this)">
+
+        <div class="letter-head">
+
+            <div class="icon">🫂</div>
+
+            <div>
+
+                <div class="btn-title">
+                    Read when unlovable
+                </div>
+
+                <div class="btn-text">
+                    for the days you doubt yourself
+                </div>
+
+                <div class="tap-note">
+                    tap to open 💌
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="letter-box hidden"></div>
+
+    </div>
+
+    <!-- OVERTHINKING -->
+
+    <div class="letter-btn"
+    onclick="showLetter('overthinking', this)">
+
+        <div class="letter-head">
+
+            <div class="icon">🫠</div>
+
+            <div>
+
+                <div class="btn-title">
+                    Read when overthinking
+                </div>
+
+                <div class="btn-text">
+                    when your thoughts become too loud 😭
+                </div>
+
+                <div class="tap-note">
+                    tap to open 💌
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="letter-box hidden"></div>
+
+    </div>
+
+    <!-- HUG -->
+
+    <div class="letter-btn"
+    onclick="showLetter('hug', this)">
+
+        <div class="letter-head">
+
+            <div class="icon">🤍</div>
+
+            <div>
+
+                <div class="btn-title">
+                    Read when you need a hug
+                </div>
+
+                <div class="btn-text">
+                    softness stored here 🌙
+                </div>
+
+                <div class="tap-note">
+                    tap to open 💌
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="letter-box hidden"></div>
+
+    </div>
+
+    <!-- PROUD -->
+
+    <div class="letter-btn"
+    onclick="showLetter('proud', this)">
+
+        <div class="letter-head">
+
+            <div class="icon">✨</div>
+
+            <div>
+
+                <div class="btn-title">
+                    Proud of you notes
+                </div>
+
+                <div class="btn-text">
+                    tiny reminders that you're doing okay
+                </div>
+
+                <div class="tap-note">
+                    tap to open 💌
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="letter-box hidden"></div>
+
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    written softly for difficult nights 🌙
+
+</div>
+
+<script>
+
+const letters = {
+
+sad:[
+
+"even the heaviest nights eventually loosen their grip 🌙",
+
+"you are allowed to rest without explaining why you are tired",
+
+"God is close to hearts carrying quiet pain",
+
+"please don’t measure your worth through temporary sadness",
+
+"you survived every difficult day that once felt impossible too",
+
+"your softness is still beautiful, even after difficult seasons",
+
+"some storms are survived one soft breath at a time",
+
+"you deserve gentleness from yourself too",
+
+"there is nothing shameful about needing comfort",
+
+"even healing hearts become tired sometimes",
+
+"rest slowly tonight. not everything needs to be solved immediately",
+
+"you are not weak for feeling deeply",
+
+"the moon disappears some nights and still returns again 🌙",
+
+"God still hears the prayers you cannot properly explain",
+
+"some days are simply heavier than others, and that does not make you a failure",
+
+"your heart deserves patience while it heals",
+
+"there is still warmth waiting for you somewhere in this world",
+
+"please stop blaming yourself for every difficult emotion",
+
+"even emotionally exhausted souls deserve kindness",
+
+"your sadness does not make you difficult to love",
+
+"nothing about your tears makes you weak",
+
+"you are allowed to pause and breathe for a while",
+
+"quiet healing is still healing",
+
+"some nights are only meant for surviving softly",
+
+"your existence still matters deeply on difficult days",
+
+"the world can wait until your heart feels calmer",
+
+"you deserve peace too",
+
+"there is still softness left in life for you",
+
+"God does not abandon tired hearts",
+
+"your emotions are not too much",
+
+"rest your shoulders tonight",
+
+"even broken nights eventually become mornings",
+
+"please be gentle with yourself tonight 🌙",
+
+"you are not failing because you are struggling",
+
+"some healing takes longer because your heart loved deeply",
+
+"there is no shame in emotional exhaustion",
+
+"your soul deserves tenderness too",
+
+"not every difficult season lasts forever",
+
+"you are still worthy on messy days",
+
+"the fact that you are still trying matters more than you realize",
+
+"God sees the pain you never properly talk about",
+
+"you deserve love that feels emotionally safe",
+
+"please stop punishing yourself for being human",
+
+"your heart carried enough for today",
+
+"surviving quietly is still strength",
+
+"some days are not meant to be productive, only survived",
+
+"you deserve rest without guilt 😴",
+
+"there is still beauty waiting ahead for you",
+
+"even sadness deserves compassion, not shame",
+
+"your softness survived another difficult day"
+
+],
+
+badday:[
+
+"you carried a lot today, even if nobody fully noticed 🌧️",
+
+"surviving emotionally exhausting days is enough sometimes",
+
+"please rest tonight without feeling guilty for being tired",
+
+"hard days do not erase your progress",
+
+"tomorrow does not need to carry today’s heaviness",
+
+"you tried your best with the energy you had",
+
+"some days are storms, not failures",
+
+"God understands exhausted hearts too",
+
+"you are allowed to stop holding everything together for one night",
+
+"your effort mattered today, even if the results felt invisible",
+
+"please unclench your shoulders and breathe slowly",
+
+"some days are simply emotionally unfair",
+
+"your worth is not measured by productivity",
+
+"even strong people become tired sometimes",
+
+"you deserve gentleness after difficult days",
+
+"there is no shame in needing rest",
+
+"today was heavy, not hopeless",
+
+"you survived another difficult chapter of the day 🌙",
+
+"rest is productive too 😴",
+
+"God sees the effort behind your quiet survival",
+
+"you are not lazy for being emotionally drained",
+
+"please stop being cruel to yourself tonight",
+
+"some healing happens while resting",
+
+"you deserve calmness after chaos",
+
+"your heart carried more today than people realize",
+
+"even emotionally strong souls need softness",
+
+"hard days eventually loosen their grip",
+
+"your exhaustion deserves understanding, not shame",
+
+"not every day has to feel meaningful",
+
+"tomorrow can begin gently again",
+
+"you do not need to solve everything tonight",
+
+"please let yourself breathe now",
+
+"surviving difficult days is still strength",
+
+"God is near even on emotionally messy days",
+
+"your tiredness makes sense",
+
+"there is still peace waiting ahead for you",
+
+"today was difficult, but you are still here",
+
+"you deserve comfort after carrying so much",
+
+"even overwhelming days eventually end",
+
+"your soul deserves quietness tonight",
+
+"you are not behind because you needed rest",
+
+"please forgive yourself for today",
+
+"you are doing better than your tired brain believes",
+
+"one difficult day does not define your life",
+
+"you deserve emotional safety too",
+
+"some nights are only meant for recovering slowly 🌙",
+
+"there is still softness left for you in this world",
+
+"your heart deserves patience after today",
+
+"nothing about today made you less worthy",
+
+"i hope tonight feels gentler on your soul"
+
+],
+
+unlovable:[
+
+"there has never been anything fundamentally wrong with you 🌙",
+
+"you are easier to love than you realize",
+
+"your softness is not a burden",
+
+"someone could know your heart deeply and still stay",
+
+"you deserve calm love, not survival love",
+
+"your existence is not too much",
+
+"you deserve affection without conditions",
+
+"being emotional does not make you difficult to love",
+
+"God did not create you to be unwanted",
+
+"your heart deserves patience and gentleness",
+
+"someone loving you fully is possible",
+
+"you are not hard to care about",
+
+"your insecurities do not define your worth",
+
+"you deserve reassurance too",
+
+"nothing about your heart makes you unworthy",
+
+"you are still lovable on insecure days",
+
+"your flaws do not cancel your beauty",
+
+"love should not constantly feel frightening",
+
+"you deserve consistency and emotional safety",
+
+"your heart was never too much for the right people",
+
+"please stop apologizing for needing care",
+
+"you deserve warmth without having to beg for it",
+
+"being sensitive is not a flaw",
+
+"your tenderness deserves appreciation",
+
+"someone could truly understand you and still stay",
+
+"you are not impossible to love 🌙",
+
+"your emotions deserve understanding, not shame",
+
+"you deserve love that feels calm",
+
+"your overthinking does not erase your value",
+
+"there is still someone who would admire your softness",
+
+"God still calls you worthy, even on days you doubt yourself",
+
+"you are not too broken for healthy love",
+
+"your heart deserves protection too",
+
+"please stop measuring your worth through rejection",
+
+"someone leaving does not reduce your value",
+
+"you deserve people who choose you peacefully",
+
+"your quiet side deserves love too",
+
+"you are not difficult for wanting reassurance",
+
+"your soul deserves emotional safety",
+
+"real love should not constantly confuse you",
+
+"you deserve comfort, not emotional survival",
+
+"there is nothing shameful about needing affection",
+
+"your softness is beautiful, not weak",
+
+"someone could see all your scars and still love you deeply",
+
+"your existence deserves warmth",
+
+"you deserve to feel chosen too",
+
+"not everybody will misunderstand your heart",
+
+"God sees beauty in the parts you criticize most",
+
+"your heart is worthy of staying for",
+
+"you deserve love that feels safe enough to breathe inside"
+
+],
+
+overthinking:[
+
+"your brain is creating storms bigger than reality 😭",
+
+"not everything is falling apart tonight",
+
+"please stop preparing your heart for pain every second",
+
+"rest first, think later 🌙",
+
+"your thoughts are loud right now, not always true",
+
+"not every silence means rejection",
+
+"your fears are not facts",
+
+"some things do not need immediate answers",
+
+"God did not design your mind to live in constant fear",
+
+"please stop fighting imaginary situations",
+
+"you deserve peace beyond your own thoughts",
+
+"your mind deserves rest too",
+
+"not every delayed reply is a disaster",
+
+"uncertainty is uncomfortable, not dangerous",
+
+"your heart deserves calmer thoughts",
+
+"not everything requires analysis tonight",
+
+"you are allowed to simply exist quietly",
+
+"your thoughts do not control reality",
+
+"breathe before assuming the worst 🌙",
+
+"your brain is tired, not prophetic",
+
+"nothing needs to be solved immediately",
+
+"you deserve emotional quietness too",
+
+"not every feeling predicts disaster",
+
+"some things become clearer after rest",
+
+"overthinking steals softness from moments",
+
+"your mind deserves gentleness tonight",
+
+"please stop punishing yourself with assumptions",
+
+"you are safe right now",
+
+"not every emotional shift means abandonment",
+
+"your thoughts deserve boundaries too",
+
+"tomorrow may feel clearer than tonight",
+
+"your brain is overstimulated, not accurate",
+
+"you deserve mental calmness",
+
+"rest your thoughts for a little while",
+
+"some fears are only passing clouds",
+
+"not every uncertainty is danger",
+
+"your nervous system deserves rest too",
+
+"you do not need to emotionally prepare for every heartbreak",
+
+"breathe slower tonight 😴",
+
+"peace is allowed to exist in your mind too",
+
+"not every distance means loss",
+
+"your heart deserves softer thoughts",
+
+"you are allowed to stop spiraling now",
+
+"your mind deserves silence sometimes",
+
+"some answers arrive slowly",
+
+"please stop carrying imaginary futures tonight",
+
+"your thoughts are not your enemy",
+
+"not every fear deserves your attention",
+
+"God understands anxious hearts too",
+
+"rest your heart for tonight 🌙"
+
+],
+
+hug:[
+
+"if this note could hug you right now, it absolutely would 🫂",
+
+"rest your heart here for a little while 🌙",
+
+"you deserve softness too",
+
+"i hope this page feels a little warm tonight",
+
+"nothing is chasing you right now",
+
+"your soul deserves comfort after everything it carries",
+
+"imagine someone gently holding your tired heart tonight",
+
+"you are safe here",
+
+"God still watches over exhausted hearts",
+
+"let yourself breathe slower for a moment",
+
+"some comfort still exists for you in this world",
+
+"your existence deserves tenderness",
+
+"i hope tonight feels gentler on your soul",
+
+"rest slowly. the world can wait a little",
+
+"you deserve emotional warmth too",
+
+"your tired mind deserves quietness",
+
+"imagine being wrapped in calmness tonight 🌙",
+
+"please stop carrying everything alone for one minute",
+
+"your heart deserves somewhere soft to land",
+
+"you are allowed to feel cared for",
+
+"there is still kindness waiting for you",
+
+"some nights are meant only for resting quietly",
+
+"your pain deserves gentleness, not pressure",
+
+"you deserve comfort without having to earn it",
+
+"God understands the exhaustion you never explain",
+
+"please let yourself feel safe tonight",
+
+"your heart has survived enough for one day",
+
+"there is nothing weak about needing reassurance",
+
+"your softness deserves protection too",
+
+"i hope this note feels like emotional warmth",
+
+"you deserve hugs that feel safe and calm",
+
+"rest your thoughts here for a while 😴",
+
+"your soul deserves peace too",
+
+"some healing happens in quiet moments",
+
+"please be gentle with yourself tonight",
+
+"you deserve kindness from yourself too",
+
+"you are not alone in difficult nights 🌙",
+
+"there is still warmth in the world for you",
+
+"your tiredness deserves understanding",
+
+"imagine the universe holding you softly tonight",
+
+"your heart deserves to breathe",
+
+"even exhausted people deserve love",
+
+"God is near even during lonely nights",
+
+"you deserve emotional safety",
+
+"let the night carry some of the heaviness for you",
+
+"nothing about your sadness makes you undeserving of comfort",
+
+"your existence still matters deeply",
+
+"i hope your heart rests easier tonight",
+
+"you deserve moments that feel peaceful",
+
+"softness still exists for you here 🤍"
+
+],
+
+proud:[
+
+"i’m proud of how much you keep surviving quietly ✨",
+
+"you’ve grown more than you realize",
+
+"even on difficult days, you continue trying",
+
+"the effort you put into life matters deeply",
+
+"you deserve to feel proud of yourself too",
+
+"God sees the strength behind your silent battles",
+
+"you handled situations this year that once would have broken you",
+
+"your growth may feel slow, but it is real 🌙",
+
+"the person you are becoming is beautiful",
+
+"you continue standing even after emotionally exhausting days",
+
+"i hope you recognize your own strength someday",
+
+"you survived nights that once felt unbearable",
+
+"your healing deserves appreciation too",
+
+"you are doing far better than your mind tells you",
+
+"there is something admirable about your softness",
+
+"you kept going even while carrying heavy thoughts",
+
+"the way you continue loving despite pain is beautiful",
+
+"you deserve credit for surviving difficult seasons",
+
+"your effort matters even when nobody applauds it",
+
+"God is proud of the heart still trying",
+
+"you have grown through things you never talk about",
+
+"your resilience deserves gentleness too",
+
+"you are becoming stronger without losing your softness",
+
+"please stop underestimating your progress",
+
+"the fact that you are still here matters deeply",
+
+"you continue healing in ways people cannot always see",
+
+"your quiet perseverance is powerful",
+
+"there is beauty in how hard you keep trying",
+
+"you survived another chapter of your life 🌙",
+
+"you deserve encouragement too",
+
+"the way you care for others says a lot about your heart",
+
+"you are growing into someone emotionally beautiful",
+
+"even your smallest progress counts",
+
+"your heart has carried more than people realize",
+
+"i hope you become proud of your healing journey",
+
+"there is strength in staying soft after pain",
+
+"you continue moving forward even while tired",
+
+"you are not the same person you once were",
+
+"God still has gentle plans for your life",
+
+"your kindness deserves recognition",
+
+"you survived emotionally difficult seasons with grace",
+
+"your effort was never invisible",
+
+"the world is softer because you exist in it",
+
+"you deserve moments of peace after everything you survived",
+
+"your growth deserves patience",
+
+"there is courage in continuing to love life after difficult moments",
+
+"you have handled more than you give yourself credit for",
+
+"your heart deserves appreciation too",
+
+"you are becoming someone your younger self would feel safe with",
+
+"i’m genuinely proud of the person you are becoming 🤍"
+
+]
+
+};
+
+function showLetter(type, element){
+
+    const random =
+    letters[type][
+    Math.floor(
+    Math.random() *
+    letters[type].length
+    )];
+
+    /* CLOSE OTHER LETTERS */
+
+    document
+    .querySelectorAll(".letter-box")
+    .forEach(box=>{
+
+        box.className =
+        "letter-box hidden";
+
+    });
+
+    /* CURRENT LETTER */
+
+    const box =
+    element.querySelector(".letter-box");
+
+    /* SHOW */
+
+    box.classList.remove("hidden");
+
+    /* COLOR */
+
+    box.classList.add(
+    "paper-" + type
+    );
+
+    /* TEXT */
+
+    box.innerHTML = random;
+
+}
+
+</script>
+
+</body>
+</html>
