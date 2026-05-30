@@ -179,12 +179,15 @@ z-index:-1;
 
 .grid{
 
-    display:grid;
+    display:flex;
 
-    grid-template-columns:
-    repeat(auto-fit,minmax(240px,1fr));
+    flex-direction:column;
 
     gap:22px;
+
+    max-width:700px;
+
+    margin:auto;
 }
 
 /* BUTTON */
@@ -458,7 +461,7 @@ z-index:3;
 
 max-width:82%;
 
-font-size:1.28rem;
+font-size:1.6rem;
 
 line-height:2;
 
@@ -473,6 +476,14 @@ messageFade 0.8s ease;
 
 text-shadow:
 0 2px 10px rgba(0,0,0,0.28);
+
+text-shadow:
+0 0 8px rgba(255,255,255,0.3),
+0 2px 8px rgba(0,0,0,0.7),
+-1px -1px 0 rgba(0,0,0,0.8),
+ 1px -1px 0 rgba(0,0,0,0.8),
+-1px  1px 0 rgba(0,0,0,0.8),
+ 1px  1px 0 rgba(0,0,0,0.8);
 }
 
 /* FOOTER */
@@ -563,6 +574,96 @@ translateY(0px);
 }
 }
 
+.card-message{
+
+    display:none;
+
+    margin-top:18px;
+
+    min-height:220px;
+
+    padding:30px;
+
+    border-radius:26px;
+
+    background-size:cover;
+
+    background-position:center;
+
+    color:white;
+
+    border:
+    1px solid rgba(255,255,255,0.12);
+
+    box-shadow:
+    0 10px 35px rgba(0,0,0,0.25);
+
+    animation:
+    messageFade 0.4s ease;
+}
+
+@media (max-width:768px){
+
+    .container{
+        padding:80px 14px 50px;
+    }
+
+    .title{
+        font-size:2.2rem;
+        line-height:1.2;
+    }
+
+    .subtitle{
+        font-size:0.95rem;
+        padding:0 10px;
+    }
+
+    .back-btn{
+        top:12px;
+        left:12px;
+        padding:10px 16px;
+        font-size:0.85rem;
+    }
+
+    .emotion-btn{
+        min-height:auto;
+        padding:20px;
+    }
+
+    .icon{
+        font-size:1.8rem;
+    }
+
+    .btn-title{
+        font-size:1.1rem;
+    }
+
+    .btn-text{
+        font-size:0.9rem;
+    }
+
+    .card-message{
+        min-height:180px;
+        padding:22px;
+    }
+
+    .message-inner{
+        font-size:1.15rem;
+        line-height:1.7;
+        max-width:95%;
+    }
+
+    .footer{
+        margin-top:35px;
+        font-size:0.8rem;
+    }
+
+    .back-btn{
+        position:sticky;
+        top:10px;
+    }
+}
+
 </style>
 
 </head>
@@ -594,115 +695,119 @@ onclick="window.location.href='home.html'">
 
     </div>
 
-    <!-- BUTTON GRID -->
+<!-- BUTTON GRID -->
 
-    <div class="grid">
+ <div class="grid">
 
-        <!-- SAD -->
 
-        <div class="emotion-btn"
-        onclick="showMessage('sad')">
+<!-- SAD -->
 
-            <div class="icon">☁️</div>
+<div class="emotion-btn"
+onclick="showMessage(this,'sad')">
 
-            <div class="btn-title">
-                Open when sad
-            </div>
+    <div class="icon">☁️</div>
 
-            <div class="btn-text">
-                small reminders for difficult moments
-            </div>
-
-        </div>
-
-        <!-- ANXIOUS -->
-
-        <div class="emotion-btn"
-        onclick="showMessage('anxious')">
-
-            <div class="icon">🌧️</div>
-
-            <div class="btn-title">
-                Open when anxious
-            </div>
-
-            <div class="btn-text">
-                slower thoughts for restless minds
-            </div>
-
-        </div>
-
-        <!-- LONELY -->
-
-        <div class="emotion-btn"
-        onclick="showMessage('lonely')">
-
-            <div class="icon">🌙</div>
-
-            <div class="btn-title">
-                Open when lonely
-            </div>
-
-            <div class="btn-text">
-                quiet reminders that you matter
-            </div>
-
-        </div>
-
-        <!-- OVERTHINKING -->
-
-        <div class="emotion-btn"
-        onclick="showMessage('overthinking')">
-
-            <div class="icon">🫠</div>
-
-            <div class="btn-title">
-                Open when overthinking
-            </div>
-
-            <div class="btn-text">
-                grounding thoughts for loud nights
-            </div>
-
-        </div>
-
-        <!-- TIRED -->
-
-        <div class="emotion-btn"
-        onclick="showMessage('tired')">
-
-            <div class="icon">😴</div>
-
-            <div class="btn-title">
-                Open when tired
-            </div>
-
-            <div class="btn-text">
-                gentle permission to rest
-            </div>
-
-        </div>
-
+    <div class="btn-title">
+        Open when sad
     </div>
 
-    <!-- MESSAGE BOX -->
-
-    <div class="message-box"
-    id="messageBox">
-
-        hey 🌙<br><br>
-
-        pause for a second.<br>
-        breathe slowly.<br>
-        you are safe here.
-
+    <div class="btn-text">
+        small reminders for difficult moments
     </div>
 
-    <!-- FOOTER -->
+    <div class="card-message"></div>
 
-    <div class="footer">
+</div>
 
-        one breath at a time 🌙
+<!-- ANXIOUS -->
+
+<div class="emotion-btn"
+onclick="showMessage(this,'anxious')">
+
+    <div class="icon">🌧️</div>
+
+    <div class="btn-title">
+        Open when anxious
+    </div>
+
+    <div class="btn-text">
+        slower thoughts for restless minds
+    </div>
+
+    <div class="card-message"></div>
+
+</div>
+
+<!-- LONELY -->
+
+<div class="emotion-btn"
+onclick="showMessage(this,'lonely')">
+
+    <div class="icon">🌙</div>
+
+    <div class="btn-title">
+        Open when lonely
+    </div>
+
+    <div class="btn-text">
+        quiet reminders that you matter
+    </div>
+
+    <div class="card-message"></div>
+
+</div>
+
+<!-- OVERTHINKING -->
+
+<div class="emotion-btn"
+onclick="showMessage(this,'overthinking')">
+
+    <div class="icon">🫠</div>
+
+    <div class="btn-title">
+        Open when overthinking
+    </div>
+
+    <div class="btn-text">
+        grounding thoughts for loud nights
+    </div>
+
+    <div class="card-message"></div>
+
+</div>
+
+<!-- TIRED -->
+
+<div class="emotion-btn"
+onclick="showMessage(this,'tired')">
+
+    <div class="icon">😴</div>
+
+    <div class="btn-title">
+        Open when tired
+    </div>
+
+    <div class="btn-text">
+        gentle permission to rest
+    </div>
+
+    <div class="card-message"></div>
+
+</div>
+
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+one breath at a time 🌙
+
+</div>
+
+</div>
+
 
     </div>
 
@@ -1932,68 +2037,52 @@ const overlays = [
 
 ];
 
-function showMessage(type){
+function showMessage(card,type){
 
     const randomMessage =
-
     messages[type][
-    Math.floor(
-    Math.random() *
-    messages[type].length
-    )
+        Math.floor(
+            Math.random() *
+            messages[type].length
+        )
     ];
 
     const randomImage =
-
     messageBackgrounds[type][
-    Math.floor(
-    Math.random() *
-    messageBackgrounds[type].length
-    )
+        Math.floor(
+            Math.random() *
+            messageBackgrounds[type].length
+        )
     ];
 
-    const randomOverlay =
+    document
+    .querySelectorAll(".card-message")
+    .forEach(box=>{
 
-    overlays[
-    Math.floor(
-    Math.random() *
-    overlays.length
-    )
-    ];
+        box.style.display="none";
+
+    });
 
     const box =
-    document.getElementById("messageBox");
+    card.querySelector(".card-message");
 
-    box.style.opacity = "0";
+    box.innerHTML = `
+        <div class="message-inner">
+            ${randomMessage}
+        </div>
+    `;
 
-    box.style.transform =
-    "translateY(12px) scale(0.98)";
+    box.style.backgroundImage =
+    `linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
+    ),
+    url('${randomImage}')`;
 
-    setTimeout(()=>{
+    box.style.backgroundSize="cover";
+    box.style.backgroundPosition="center";
 
-        box.innerHTML =
-
-`<div class="message-inner">
-${randomMessage}
-</div>`;
-
-        box.style.background =
-
-`${randomOverlay},
-url('${randomImage}')`;
-
-        box.style.backgroundSize =
-        "cover";
-
-        box.style.backgroundPosition =
-        "center";
-
-        box.style.opacity = "1";
-
-        box.style.transform =
-        "translateY(0px) scale(1)";
-
-    },220);
+    box.style.display="block";
 }
 
 </script>
