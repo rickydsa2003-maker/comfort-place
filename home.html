@@ -258,12 +258,37 @@ body::before{
 
 .card-text{
 
-    color:
-    rgba(255,255,255,0.72);
+    color:rgba(255,255,255,0.72);
 
     line-height:1.6;
 
     font-size:0.96rem;
+
+    min-height:90px;
+
+    flex-grow:1;
+
+}
+
+.coming-soon{
+
+align-self:flex-start;
+
+display:inline-block;
+
+margin-top:12px;
+
+padding:5px 10px;
+
+border-radius:999px;
+
+font-size:0.75rem;
+
+background:
+rgba(255,255,255,0.12);
+
+color:
+rgba(255,255,255,0.85);
 }
 
 /* GLOW EFFECT */
@@ -533,6 +558,15 @@ box-shadow:
 
 @media(max-width:768px){
 
+    .card-grid{
+
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:768px){
+
     .container{
 
         padding:30px 16px 50px;
@@ -541,6 +575,11 @@ box-shadow:
     .card{
 
         min-height:180px;
+    }
+
+    .main-title{
+
+    font-size:2.2rem;
     }
 }
 
@@ -677,6 +716,10 @@ box-shadow:
 
             </div>
 
+            <div class="coming-soon">
+             Coming Soon 🚧
+            </div>
+
         </div>
 
          <div class="card" onclick="window.location.href='games.html'">
@@ -693,6 +736,9 @@ box-shadow:
                     Tiny chaotic games, questions and inside-joke energy 😭
                 </div>
 
+            </div>
+            <div class="coming-soon">
+             Coming Soon 🚧
             </div>
 
         </div>
@@ -711,6 +757,9 @@ box-shadow:
                     Emotional damage, sleepy memes, relationship memes and pure chaos.
                 </div>
 
+            </div>
+            <div class="coming-soon">
+             Coming Soon 🚧
             </div>
 
         </div>
