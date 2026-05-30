@@ -146,13 +146,14 @@ body{
     align-items:center;
 
     padding:
-    70px 20px 340px;
+    70px 20px 120px;
 }
 
 /* TITLE */
 
 .title{
 
+    white-space:nowrap;
     text-align:center;
 
     font-size:
@@ -356,12 +357,9 @@ body{
 
 .atlas-core{
 
-    position:fixed;
+    position:relative;
 
-    bottom:15px;
-    left:50%;
-
-    transform:translateX(-50%);
+    margin:100px auto 40px auto;
 
     width:220px;
     height:220px;
@@ -587,10 +585,21 @@ body{
 
 @media (max-width: 768px){
 
+    .moon{
+
+        width:90px;
+        height:90px;
+
+        top:70px;
+        right:10px;
+
+        opacity:0.8;
+    }
+
     .atlas-core{
         width:120px;
         height:120px;
-        bottom:10px;
+        margin:80px auto 30px auto;
     }
 
     .breath{
@@ -703,24 +712,24 @@ onclick="window.location.href='home.html'">
 
     </div>
 
-</div>
+    <div class="atlas-core">
 
-<div class="atlas-core">
+        <div class="breath"></div>
 
-    <div class="breath"></div>
+        <div class="atlas-system">
 
-    <div class="atlas-system">
+            <div class="atlas">
+                A.T.L.A.S.
+            </div>
 
-        <div class="atlas">
-            A.T.L.A.S.
-        </div>
+            <div class="atlas-line">
+                Always There
+            </div>
 
-        <div class="atlas-line">
-            Always There
-        </div>
+            <div class="atlas-line">
+                Loving Across Silence 🌙
+            </div>
 
-        <div class="atlas-line">
-            Loving Across Silence 🌙
         </div>
 
     </div>
