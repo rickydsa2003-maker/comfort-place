@@ -90,29 +90,95 @@ body{
 
     position:absolute;
 
-    top:25px;
-    right:25px;
+    top:45px;
+    right:15px;
 
-    width:130px;
-    height:130px;
+    width:70px;
+    height:70px;
 
     border-radius:50%;
 
     background:
     radial-gradient(
-    circle,
-    #f8fbff,
-    #dbeafe
+        circle at 30% 25%,
+        #ffffff 0%,
+        #fdfcf7 20%,
+        #f1ede0 55%,
+        #d9d6cc 100%
     );
 
     box-shadow:
-    0 0 80px rgba(255,255,255,0.30),
-    0 0 150px rgba(173,216,255,0.18);
+    0 0 20px rgba(255,255,255,0.35),
+    0 0 50px rgba(255,245,200,0.28),
+    0 0 90px rgba(255,235,160,0.12);
+
+    animation:floatMoon 6s ease-in-out infinite;
 
     z-index:1;
-
-    animation:floatMoon 5s ease-in-out infinite;
 }
+
+/* CRATERS */
+
+.moon::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(
+        circle at 28% 30%,
+        rgba(170,170,170,0.30) 0 8%,
+        transparent 9%
+    ),
+
+    radial-gradient(
+        circle at 62% 38%,
+        rgba(170,170,170,0.25) 0 7%,
+        transparent 8%
+    ),
+
+    radial-gradient(
+        circle at 40% 65%,
+        rgba(170,170,170,0.22) 0 10%,
+        transparent 11%
+    ),
+
+    radial-gradient(
+        circle at 70% 72%,
+        rgba(170,170,170,0.18) 0 6%,
+        transparent 7%
+    );
+
+}
+
+/* LIGHT SHINE */
+
+.moon::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:10px;
+    left:12px;
+
+    width:22px;
+    height:22px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,0.35);
+
+    filter:blur(5px);
+}
+
+/* FLOATING */
 
 @keyframes floatMoon{
 
@@ -121,7 +187,7 @@ body{
     }
 
     50%{
-        transform:translateY(-8px);
+        transform:translateY(-6px);
     }
 
     100%{
